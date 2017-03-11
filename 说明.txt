@@ -4,3 +4,4 @@
 
 a.新建MVC5+EF6项目。
 b.导入adminLTE2.3.8UI界面。
+c.增加百度echarts图标支持。
