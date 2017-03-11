@@ -38,5 +38,11 @@ namespace SkyWebApplication.Controllers
 
             return View();
         }
+        public ActionResult Charts()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
