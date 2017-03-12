@@ -5,3 +5,10 @@
 a.新建MVC5+EF6项目。
 b.导入adminLTE2.3.8UI界面。
 c.增加百度echarts图标支持。
+
+2、3月12日建立部分页面和基础数据管理
+
+a.参考树形分类http://www.admineap.com/
+b.基础的EF框架设计。参考微软官网。http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
+c.使用模态框新增和删除UI。
+d.在进行git上传操作的时候，发现如果数据库生成在appdata文件夹下，git是上传失败的。删除后可正常上传。
