@@ -237,6 +237,7 @@
     <Content Include="dist\img\user8-128x128.jpg" />
     <Content Include="dist\js\app.js" />
     <Content Include="dist\js\app.min.js" />
+    <Content Include="plugins\bootstrap-treeview.js" />
     <Content Include="dist\js\demo.js" />
     <Content Include="dist\js\pages\dashboard.js" />
     <Content Include="dist\js\pages\dashboard2.js" />
@@ -1219,8 +1220,8 @@
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\china.js" />
-    <Content Include="Scripts\echarts.min.js" />
+    <Content Include="plugins\china.js" />
+    <Content Include="plugins\echarts.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1263,6 +1264,7 @@
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\Add.cshtml" />
     <Content Include="Views\Home\Charts.cshtml" />
+    <Content Include="Views\Home\Dictionary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

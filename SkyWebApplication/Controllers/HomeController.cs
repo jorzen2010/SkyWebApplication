@@ -44,5 +44,11 @@ namespace SkyWebApplication.Controllers
 
             return View();
         }
+        public ActionResult Dictionary()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

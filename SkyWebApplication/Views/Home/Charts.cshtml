@@ -1,6 +1,10 @@
 ﻿@{
     ViewBag.Title = "Video";
 } 
+@section TopScripts {
+<script src="/plugins/echarts.min.js"></script>
+<script src="/plugins/china.js"></script>
+}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
@@ -43,8 +47,9 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
+                            <!-- /.chart-开始 -->
                             <div id="main" style="width: 800px;height:400px;"></div>
-                            <!-- /.chart-responsive -->
+                            <!-- /.chart-结束 -->
                         </div>
                     </div>
                     <!-- /.row -->
@@ -58,11 +63,13 @@
     <!-- /.row -->
 </section>
 <!-- /.content -->
-<script type="text/javascript">
+
+@section FootScripts {
+    <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
     // 指定图表的配置项和数据
-   
+
     // 案例柱状型
 
     //var option = {
@@ -1441,4 +1448,7 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 </script>
+
+}
+
 
