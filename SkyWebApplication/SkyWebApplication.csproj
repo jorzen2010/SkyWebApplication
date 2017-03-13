@@ -253,6 +253,7 @@
     <Content Include="dist\img\user8-128x128.jpg" />
     <Content Include="dist\js\app.js" />
     <Content Include="dist\js\app.min.js" />
+    <Content Include="plugins\bootstrap-paginator.js" />
     <Content Include="plugins\bootstrap-treeview.js" />
     <Content Include="dist\js\demo.js" />
     <Content Include="dist\js\pages\dashboard.js" />
@@ -866,6 +867,7 @@
     <Content Include="plugins\daterangepicker\daterangepicker.js" />
     <Content Include="plugins\daterangepicker\moment.js" />
     <Content Include="plugins\daterangepicker\moment.min.js" />
+    <Content Include="plugins\extendPagination.js" />
     <Content Include="plugins\fastclick\fastclick.js" />
     <Content Include="plugins\fastclick\fastclick.min.js" />
     <Content Include="plugins\flot\excanvas.js" />

@@ -11,98 +11,148 @@
 
 
 
+        <table class="table" id="sysUserList">
+        </table>
+        <div id="pager"></div>
 
-<table class="table" id="sysUserList">
-</table>
-<ul class="pagination" id="pager"></ul>
+        @section FootScripts {
 
-@section FootScripts {
-<script type="text/javascript">
-
-
+        <script type="text/javascript">
 
 
 
-    //function GetQueryString(name) {
-    //    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    //    var r = window.location.search.substr(1).match(reg);
-    //    if (r != null) return unescape(r[2]); return null;
-    //}
-    $(function () {
-       // getUser();
-        getUserByAjax(1);
-    });
 
-    //var getUser = function () {
-    //    //var pageNumber=GetQueryString("page");
 
-    //    //if (pageNumber == null && pageNumber.toString.length == 0)
-    //    //{
-    //    //    pageNumber = 1;
-    //    //}
-    //    getUserByAjax(1);
-    //}
+            //function GetQueryString(name) {
+            //    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            //    var r = window.location.search.substr(1).match(reg);
+            //    if (r != null) return unescape(r[2]); return null;
+            //}
+            $(function () {
+                // getUser();
+                getUserByAjax();
+            });
 
-    //$(function () {
-    //    getUserByAjax(1);
-    //});
-    //Ajax请求
-    var getUserByAjax = function (pageNumber) {
-        
-        $.ajax({
-            url: "/User/AjaxPage?page=" + pageNumber,
-            type: "POST",
-            dataType: "json",
-            success: function (data) {
-                //接收数据（data）并绑定
-                var html = "";
-                $.each(data.sysUsers, function (i, item) {
-                    html += "<tr><td>" + item.ID+"</td><td>" + item.UserName + "</td><td>" + item.Password + "</td><td>" + item.Email +
-                        "</td><td><a href='/User/Edit/" + item.ID + "'>Edit</a> | <a href='/User/Details/" +
-                        item.ID + "'>Details</a> | <a href='/User/Delete/" + item.ID + "'>Delete</a></td></tr>";
-                });
-                $("#sysUserList").html(html);
+        //var getUser = function () {
+        //    //var pageNumber=GetQueryString("page");
 
-                var pager = data.pager;
-                html = "";
-                if (pager.HasPreviousPage) {
-                    html += "<li><a href='#' onclick='getUserByAjax(1);return false;'>第一页</a></li><li><a href='#' onclick='getUserByAjax(" + (pager.PageNumber - 1) + ");return false;'>上一页</a></li> ";
+        //    //if (pageNumber == null && pageNumber.toString.length == 0)
+        //    //{
+        //    //    pageNumber = 1;
+        //    //}
+        //    getUserByAjax(1);
+        //}
+
+        //$(function () {
+        //    getUserByAjax(1);
+        //});
+        //Ajax请求
+        var getUserByAjax = function (pageNumber) {
+
+            $.ajax({
+                url: "/User/AjaxPage?page=" + pageNumber,
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    //接收数据（data）并绑定
+                    var html = "";
+                    $.each(data.sysUsers, function (i, item) {
+                        html += "<tr><td>" + item.ID+"</td><td>" + item.UserName + "</td><td>" + item.Password + "</td><td>" + item.Email +
+                            "</td><td><a href='/User/Edit/" + item.ID + "'>Edit</a> | <a href='/User/Details/" +
+                            item.ID + "'>Details</a> | <a href='/User/Delete/" + item.ID + "'>Delete</a></td></tr>";
+                    });
+                    $("#sysUserList").html(html);
+
+
+                    //var pager = data.pager;
+
+
+                    //$('#pager').extendPagination({
+
+                    //    totalCount: pager.TotalItemCount,
+
+                    //    showCount: 5,
+
+                    //    limit: pager.PageSize,
+
+                    //    callback: function (curr, limit, totalCount) {
+
+                    //        //createTable(curr, limit, totalCount);
+                    //       // alert(pager.PageNumber);
+                    //       // getUserByAjax(curr);
+
+                    //    }
+
+                    //});
+
+                    //var pager = data.pager;
+                    //html = "";
+                    //if (pager.HasPreviousPage) {
+                    //    html += "<li><a href='#' onclick='getUserByAjax(1);return false;'>第一页</a></li><li><a href='#' onclick='getUserByAjax(" + (pager.PageNumber - 1) + ");return false;'>上一页</a></li> ";
+                    //}
+                    //else {
+                    //    html += "<li class='disabled'><a href='#' onclick='getUserByAjax(1);return false;'>第一页</a></li><li class='disabled'><a href='#'>上一页</a></li>";
+                    //}
+                    ////var i = 0;
+                    //////分页待完善开始
+                    ////if (pager.PageCount <= 5) {
+                    ////    for (var i = 1; i < parseInt(pager.PageCount) ; i++) {
+
+                    ////        if (pager.PageNumber - 1 == i) {
+                    ////            html += "<li class='active'><a href='#' onclick='getUserByAjax(" + parseInt(i + 1) + ");return false;'>" + parseInt(i + 1) + "</a></li>";
+                    ////        }
+                    ////        else {
+                    ////            html += "<li><a href='#' onclick='getUserByAjax(" + parseInt(i + 1) + ");return false;'>" + parseInt(i + 1) + "</a></li>";
+                    ////        }
+                    ////    }
+                    ////}
+                    ////if (pager.PageCount > 5)
+                    ////{
+                    ////    if(pager.PageNumber<=3)
+                    ////        for (var i = 0; i < parseInt(pager.PageCount) ; i++) {
+
+                    ////            if (pager.PageNumber - 1 == i) {
+                    ////                html += "<li class='active'><a href='#' onclick='getUserByAjax(" + parseInt(i + 1) + ");return false;'>" + parseInt(i + 1) + "</a></li>";
+                    ////            }
+                    ////            else {
+                    ////                html += "<li><a href='#' onclick='getUserByAjax(" + parseInt(i + 1) + ");return false;'>" + parseInt(i + 1) + "</a></li>";
+                    ////            }
+                    ////        }
+                    ////    if (pager.PageNumber <= parseInt(pager.PageCount - 2))
+                    ////        for (var i = 0; i < parseInt(pager.PageCount) ; i++) {
+
+                    ////            if (pager.PageNumber - 1 == i) {
+                    ////                html += "<li class='active'><a href='#' onclick='getUserByAjax(" + parseInt(i + 1) + ");return false;'>" + parseInt(i + 1) + "</a></li>";
+                    ////            }
+                    ////            else {
+                    ////                html += "<li><a href='#' onclick='getUserByAjax(" + parseInt(i + 1) + ");return false;'>" + parseInt(i + 1) + "</a></li>";
+                    ////            }
+                    ////        }
+
+
+
+
+                    ////}
+
+                    //////分页待完善结束
+                    //html += " ";
+                    //if (pager.HasNextPage) {
+                    //    html += "<li><a href='#' onclick='getUserByAjax(" + (pager.PageNumber + 1) + ");return false;'>下一页</a></li> <li><a href='#' onclick='getUserByAjax(" + pager.PageCount + ");return false;'>最后一页</a></li>";
+                    //}
+                    //else {
+                    //    html += "<li class='disabled'><a href='#'>下一页</a></li><li class='disabled'><a href='#' onclick='getUserByAjax(1);return false;'>最后一页</a></li>";
+                    //}
+                    //$("#pager").html(html);
+                },
+                error: function (result) {
+                    alert(result.statusText);
+                },
+                complete: function (jqXHR) {
+                    jqXHR = null;
                 }
-                else {
-                    html += "<li class='disabled'><a href='#' onclick='getUserByAjax(1);return false;'>第一页</a></li><li class='disabled'><a href='#'>上一页</a></li>";
-                }
-
-                //分页待完善开始
-                if (pager.PageCount <= 5) {
-                    for (var i = 0; i < pager.PageCount; i++) {
-
-                        if (pager.PageNumber - 1 == i) {
-                            html += "<li class='active'><a href='#' onclick='getUserByAjax(" + parseInt(i + 1) + ");return false;'>" + parseInt(i + 1) + "</a></li>";
-                        }
-                        else {
-                            html += "<li><a href='#' onclick='getUserByAjax(" + parseInt(i + 1) + ");return false;'>" + parseInt(i + 1) + "</a></li>";
-                        }
-                    }
-                }
-                //分页待完善结束
-                html += " ";
-                if (pager.HasNextPage) {
-                    html += "<li><a href='#' onclick='getUserByAjax(" + (pager.PageNumber + 1) + ");return false;'>下一页</a></li> <li><a href='#' onclick='getUserByAjax(" + pager.PageCount + ");return false;'>最后一页</a></li>";
-                }
-                else {
-                    html += "<li class='disabled'><a href='#'>下一页</a></li><li class='disabled'><a href='#' onclick='getUserByAjax(1);return false;'>最后一页</a></li>";
-                }
-                $("#pager").html(html);
-            },
-            error: function (result) {
-                alert(result.statusText);
-            },
-            complete: function (jqXHR) {
-                jqXHR = null;
-            }
-        });
-    }
+            });
+        }
 
 
-</script>
+    </script>
 }
