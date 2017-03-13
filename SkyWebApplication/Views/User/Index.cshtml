@@ -1,27 +1,20 @@
-﻿@model IEnumerable<SkyWebApplication.Models.SysUser>
+﻿@model StaticPagedList<SkyWebApplication.Models.SysUser>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
 }
-
+@section Topcss {
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    }
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
+   
 
 @foreach (var item in Model) {
     <tr>
@@ -43,3 +36,21 @@
 }
 
 </table>
+
+<div class="pull-right">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    });
+</div>
+

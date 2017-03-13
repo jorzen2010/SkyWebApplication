@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using SkyWebApplication.Models;
 using SkyWebApplication.DAL;
+using PagedList;
+using PagedList.Mvc;
 
 namespace SkyWebApplication.Controllers
 {
@@ -16,11 +18,59 @@ namespace SkyWebApplication.Controllers
         private SkyWebContext db = new SkyWebContext();
         private UnitOfWork unitOfWork = new UnitOfWork();
 
-        // GET: /User/
-        public ActionResult Index()
+        // GET: /不带分页
+        //public ActionResult Index()
+        //{
+        //    var sysUsers = unitOfWork.SysUserRepository.Get().ToList();
+        //    return View(sysUsers);
+        //}
+
+
+        // GET: /全部取出数据后分页
+        //public ActionResult Index(int? page)
+        //{
+        //    int pageNumber = page ?? 1;
+        //    int pageSize = 1;
+        //    var sysUsers = unitOfWork.SysUserRepository.Get().ToList();
+        //    return View(sysUsers.ToPagedList(pageNumber, pageSize));
+
+        //}
+        // GET: 按需要取数据分页
+        public ActionResult Index(int? page)
         {
-            var sysUsers = unitOfWork.SysUserRepository.Get().ToList();
-            return View(sysUsers);
+            int pageIndex = page ?? 1;
+            int pageSize = 1;
+            int totalCount = 0;
+            var sysUsers = GetsysUsers(pageIndex, pageSize, ref totalCount);
+            var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pageIndex, pageSize, totalCount);
+            return View(sysUsersAsIPageList);
+
+        }
+        // GET: Ajax方式获取数据，分页方式带解决
+        public ActionResult List(int? page)
+        {
+            return View();
+        
+        }
+
+        public ActionResult AjaxPage(int? page)
+        {
+            int pageIndex = page ?? 1;
+            int pageSize = 2;
+            int totalCount = 0;
+            var sysUsers = GetsysUsers(pageIndex, pageSize, ref totalCount);
+            var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pageIndex, pageSize, totalCount);
+            return Json(new { sysUsers = sysUsersAsIPageList, pager = sysUsersAsIPageList.GetMetaData() }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<SysUser> GetsysUsers(int pageIndex, int pageSize, ref int totalCount)
+        {
+            var sysUsers = (from p in db.SysUsers
+                           orderby p.ID descending
+                           select p).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            totalCount = db.SysUsers.Count();
+            return sysUsers.ToList();
+
         }
 
         // GET: /User/Details/5

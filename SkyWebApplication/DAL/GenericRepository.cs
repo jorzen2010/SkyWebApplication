@@ -17,8 +17,6 @@ namespace SkyWebApplication.DAL
             this.context = context;
             this.dbSet = context.Set<TEntity>();
         }
-
-
         //使用原生的sql语句进行查询
         public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
         {
