@@ -343,6 +343,7 @@
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
+    <Content Include="plugins\bootstrapValidator - 复制.js" />
     <Content Include="plugins\chartjs\Chart.js" />
     <Content Include="plugins\chartjs\Chart.min.js" />
     <Content Include="plugins\ckeditor\adapters\jquery.js" />

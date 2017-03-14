@@ -2500,7 +2500,7 @@
 }(window.jQuery));
 ;(function($) {
     $.fn.bootstrapValidator.i18n.emailAddress = $.extend($.fn.bootstrapValidator.i18n.emailAddress || {}, {
-        'default': '请输入正确的邮箱地址'
+        'default': 'Please enter a valid email address'
     });
 
     $.fn.bootstrapValidator.validators.emailAddress = {
