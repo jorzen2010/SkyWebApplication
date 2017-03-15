@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>..\packages\Microsoft.ApplicationBlocks.Data.2.0.0\lib\net45\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -165,12 +168,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SysRoleController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
+    <Compile Include="DAL\Message.cs" />
     <Compile Include="DAL\SkyWebContext.cs" />
+    <Compile Include="DAL\SkyWebDataService.cs" />
     <Compile Include="DAL\SkyWebInitializer.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
@@ -187,12 +194,14 @@
     <Compile Include="ViewModels\SysUserViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap\css\bootstrap-switch.css" />
+    <Content Include="bootstrap\css\bootstrap-switch.min.css" />
     <Content Include="bootstrap\css\bootstrap-theme.css" />
     <Content Include="bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
-    <Content Include="bootstrap\css\bootstrapValidator.css" />
-    <Content Include="bootstrap\css\bootstrapValidator.min.css" />
+    <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.css" />
+    <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
@@ -343,7 +352,6 @@
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
-    <Content Include="plugins\bootstrapValidator - 复制.js" />
     <Content Include="plugins\chartjs\Chart.js" />
     <Content Include="plugins\chartjs\Chart.min.js" />
     <Content Include="plugins\ckeditor\adapters\jquery.js" />
@@ -892,6 +900,10 @@
     <Content Include="plugins\daterangepicker\daterangepicker.js" />
     <Content Include="plugins\daterangepicker\moment.js" />
     <Content Include="plugins\daterangepicker\moment.min.js" />
+    <Content Include="plugins\bootstrap-switch\css\bootstrap-switch.css" />
+    <Content Include="plugins\bootstrap-switch\css\bootstrap-switch.min.css" />
+    <Content Include="plugins\bootstrap-switch\js\bootstrap-switch.js" />
+    <Content Include="plugins\bootstrap-switch\js\bootstrap-switch.min.js" />
     <Content Include="plugins\fastclick\fastclick.js" />
     <Content Include="plugins\fastclick\fastclick.min.js" />
     <Content Include="plugins\flot\excanvas.js" />
@@ -1274,8 +1286,8 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="plugins\china.js" />
     <Content Include="plugins\echarts.min.js" />
-    <Content Include="plugins\bootstrapValidator.js" />
-    <Content Include="plugins\bootstrapValidator.min.js" />
+    <Content Include="plugins\bootstrap-validator\js\bootstrapValidator.js" />
+    <Content Include="plugins\bootstrap-validator\js\bootstrapValidator.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1368,15 +1380,18 @@
     <Content Include="Views\SysRole\Details.cshtml" />
     <Content Include="Views\SysRole\Edit.cshtml" />
     <Content Include="Views\SysRole\Index.cshtml" />
-    <Content Include="Views\SysUser\Createtest.cshtml" />
     <Content Include="Views\SysUser\Delete.cshtml" />
     <Content Include="Views\SysUser\Details.cshtml" />
     <Content Include="Views\SysUser\Edit.cshtml" />
     <Content Include="Views\SysUser\Index.cshtml" />
     <Content Include="Views\SysUser\Create.cshtml" />
+    <Content Include="Views\Home\Add - 复制.cshtml" />
+    <Content Include="Views\Home\Datatable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Ajax\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

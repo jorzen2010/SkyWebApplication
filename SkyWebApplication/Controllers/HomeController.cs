@@ -32,6 +32,12 @@ namespace SkyWebApplication.Controllers
 
             return View();
         }
+        public ActionResult Datatable()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
         public ActionResult Add()
         {
             ViewBag.Message = "Your contact page.";

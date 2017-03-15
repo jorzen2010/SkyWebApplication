@@ -14,8 +14,9 @@ namespace SkyWebApplication.DAL
             base.Seed(context);
             var sysUsers = new List<SysUser>
             {
-                new SysUser{UserName="Tom",Email="Tom@163.com",Password="1"},
-                new SysUser{UserName="Jerry",Email="Jerry@163.com",Password="2"}
+                new SysUser{UserName="Tom",Email="Tom@163.com",Password="1",Status=true},
+                new SysUser{UserName="Jerry",Email="Jerry@163.com",Password="2",Status=true},
+                new SysUser{UserName="Jeem",Email="Jeem@163.com",Password="2",Status=false}
             };
             sysUsers.ForEach(s => context.SysUsers.Add(s));
             context.SaveChanges();

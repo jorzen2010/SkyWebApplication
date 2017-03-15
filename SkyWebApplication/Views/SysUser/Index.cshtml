@@ -7,15 +7,17 @@
 
 @section Topcss {
     <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
-<link href="~/bootstrap/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
         列表页
         <small>
-    @Html.ActionLink("Create New", "Create")
-</small>
+            @Html.ActionLink("Create New", "Create")
+        </small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -48,42 +50,55 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered table-hover">
-                        @*<thead>
+                        <thead>
                             <tr>
-                                <th>
-                                    @Html.DisplayNameFor( SysUserListViewModel.UserName)
+                                <th class="col-sm-1">
+                                    序号
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Password)
+                                <th class="col-sm-2">
+                                    用户名
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Email)
+                                <th class="col-sm-2">
+                                    邮箱
                                 </th>
-                                <th>操作</th>
+                                <th class="col-sm-2">
+                                    状态
+                                </th>
+                                <th class="col-sm-5">操作</th>
                             </tr>
-                        </thead>*@
+                        </thead>
                         <tbody>
-                     @foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
-            <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-trash"></span> 删除</a>
-            <a class="btn btn-info btn-xs" href="@Url.Action("Details", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-info-sign"></span> 详情</a>
-        </td>
-    </tr>
-}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @if (item.Status)
+                                        {
+                                            <input type="checkbox" name="status" checked="checked" value="@item.ID" />
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" name="status" value="@item.ID" />
+                                        }
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+                                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                                        <a class="btn btn-info btn-xs" href="@Url.Action("Details", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-info-sign"></span> 详情</a>
+                                    </td>
+                                </tr>
+                            }
 
-                        </tbody>          
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.box-body -->
@@ -103,7 +118,8 @@
         LinkToLastPageFormat = "最后一页",
         PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
     })
-                    </ul>   </div>
+                    </ul>
+                </div>
             </div>
             <!-- /.box -->
         </div>
@@ -112,8 +128,6 @@
     <!-- /.row -->
 </section>
 <!-- /.content -->
-
-
 <!-- 新增用户的模态框开始 -->
 <div class="modal fade" id="addSysUser" tabindex="-1" role="dialog" aria-labelledby="addSysUserLabel" aria-hidden="true" style="margin-top:100px;">
     <div class="modal-dialog">
@@ -127,30 +141,38 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="addSysUserForm" action="/sysUser/">
+                <form class="form-horizontal" id="addSysUserForm" method="post" action="@Url.Action("Create")">
+                    @Html.AntiForgeryToken()
                     <div class="box-body">
                         <div class="form-group">
                             <label for="username" class="col-sm-2 control-label">用户名</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="username" placeholder="用户名">
+                                <input type="text" class="form-control" name="UserName" placeholder="用户名">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                            <label class="col-sm-2 control-label">密码</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password" placeholder="密码">
+                                <input type="password" class="form-control" name="Password" placeholder="密码">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">重复密码</label>
+                            <label class="col-sm-2 control-label">重复密码</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="repassword" placeholder="请再次输入密码">
+                                <input type="password" class="form-control" name="ConfirmPassword" placeholder="请再次输入密码">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">邮箱地址</label>
+                            <label class="col-sm-2 control-label">邮箱地址</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" name="email" placeholder="邮箱地址">
+                                <input type="email" class="form-control" name="Email" placeholder="邮箱地址">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否使用</label>
+                            <div class="col-sm-10" style="padding-top:7px;">
+                                <input type="radio" class="form-control" name="Status" value="true" checked="checked">&nbsp;&nbsp;启用&nbsp;&nbsp;
+                                <input type="radio" class="form-control" name="Status" value="false">&nbsp;&nbsp;禁用&nbsp;&nbsp;
                             </div>
                         </div>
 
@@ -168,11 +190,42 @@
     </div><!-- /.modal -->
 </div>
 <!-- 新增用户的模态框结束 -->
-
 @section FootScripts {
-    <script type="text/javascript" src="/plugins/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+
+            $('[name="Status"]').iCheck({
+                labelHover: false,
+                cursor: true,
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+                increaseArea: '20%'
+            });
+
+            $('[name="status"]').bootstrapSwitch({
+                onText: "启用",
+                offText: "禁用",
+                onColor: "success",
+                offColor: "danger",
+                size: "small",
+                onSwitchChange: function (event, state) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "/sysUser/UpdateStatus",
+                        data: {
+                            id: $(this).val(),
+                            status: state,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                        }
+                    });
+                }
+            });
 
 
             $('#addSysUserForm').bootstrapValidator({
@@ -184,7 +237,7 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    username: {
+                    UserName: {
                         validators: {
                             notEmpty: {
                                 message: '用户名不能为空'
@@ -196,17 +249,33 @@
                             },
                         }
                     },
-                    password: {
+                    Password: {
                         validators: {
                             notEmpty: {
                                 message: '密码不能为空'
+                            },
+                            identical: {
+                                field: 'ConfirmPassword',
+                                message: '两次输入密码不一致'
+                            },
+                            different: {
+                                field: 'UserName',
+                                message: '密码与用户名长的怎么一样呢'
                             }
                         }
                     },
-                    repassword: {
+                    ConfirmPassword: {
                         validators: {
                             notEmpty: {
                                 message: '重复密码也不能为空'
+                            },
+                            identical: {
+                                field: 'Password',
+                                message: '两次输入密码不一致'
+                            },
+                            different: {
+                                field: 'UserName',
+                                message: '密码与用户名长的怎么一样呢'
                             }
                         }
                     },
@@ -216,11 +285,19 @@
                                 message: '邮箱不能为空'
                             }
                         }
+                    },
+                    Status: {
+                        validators: {
+                            notEmpty: {
+                                message: '请选择是否禁用'
+                            }
+                        }
                     }
                 }
             });
 
 
         });
+
     </script>
 }

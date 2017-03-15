@@ -17,11 +17,8 @@ namespace SkyWebApplication.DAL
             this.context = context;
             this.dbSet = context.Set<TEntity>();
         }
-        //使用原生的sql语句进行查询
-        public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
-        {
-            return dbSet.SqlQuery(query, parameters).ToList();
-        }
+       
+       
 
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
@@ -81,5 +78,17 @@ namespace SkyWebApplication.DAL
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
         }
+        //使用原生的sql语句进行查询
+        public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
+        {
+            return dbSet.SqlQuery(query, parameters).ToList();
+        }
+        //使用原生的sql语句更新一个字段
+        public virtual void UpdateWithRawSql(string sql)
+        {
+            context.Database.ExecuteSqlCommand(sql);
+        
+        }
+
     }
 }

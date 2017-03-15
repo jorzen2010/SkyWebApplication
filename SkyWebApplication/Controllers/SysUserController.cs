@@ -71,7 +71,7 @@ namespace SkyWebApplication.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,UserName,Password,Email")] SysUser sysuser)
+        public ActionResult Create(SysUser sysuser)
         {
             if (ModelState.IsValid)
             {
@@ -96,6 +96,26 @@ namespace SkyWebApplication.Controllers
                 return HttpNotFound();
             }
             return View(sysuser);
+        }
+
+        public JsonResult UpdateStatus(int? id,bool status)
+        {
+            Message msg = new Message();
+            if (id == null)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "找不到ID";
+            }
+            SysUser sysuser = db.SysUsers.Find(id);
+            sysuser.Status = status;
+            if (ModelState.IsValid)
+            {
+                db.Entry(sysuser).State = EntityState.Modified;
+                db.SaveChanges();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "已经更改为" + sysuser.Status.ToString() ;
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
         // POST: /SysUser/Edit/5
