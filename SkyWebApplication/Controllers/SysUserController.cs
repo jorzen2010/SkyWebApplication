@@ -135,7 +135,7 @@ namespace SkyWebApplication.Controllers
         }
 
         // GET: /SysUser/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Deleteq(int? id)
         {
             if (id == null)
             {
@@ -150,8 +150,7 @@ namespace SkyWebApplication.Controllers
         }
 
         // POST: /SysUser/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             SysUser sysuser = db.SysUsers.Find(id);

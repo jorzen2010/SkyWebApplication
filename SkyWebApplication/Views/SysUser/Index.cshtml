@@ -93,8 +93,8 @@
                                     <td>
                                         <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
                                         <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-trash"></span> 删除</a>
-                                        <a class="btn btn-info btn-xs" href="@Url.Action("Details", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-info-sign"></span> 详情</a>
-                                    </td>
+                                        <a class="btn btn-info btn-xs"  onclick="delconfirm('@item.ID')"><span class="glyphicon glyphicon-info-sign"></span> 详情</a>
+                                      </td>
                                 </tr>
                             }
 
@@ -190,12 +190,62 @@
     </div><!-- /.modal -->
 </div>
 <!-- 新增用户的模态框结束 -->
+
 @section FootScripts {
     <script type="text/javascript" src="/plugins/iCheck/icheck.js"></script>
     <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
     <script type="text/javascript" src="/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
     <script type="text/javascript">
+        function delconfirm(id) {
+
+            bootbox.confirm({  
+                buttons: {  
+                    confirm: {  
+                        label: '删除',  
+                        className: 'btn-danger'  
+                    },  
+                    cancel: {  
+                        label: '取消',  
+                        className: 'btn-default'  
+                    }  
+                },  
+                message: '你确定要删除本条信息吗？',  
+                callback: function(result) {  
+                    if (result) {
+                        // window.location(url);
+                       // alertconfirm('有关联数据不能删除');
+                        window.location.href = '/sysUser/DeleteConfirmed/'+id;
+                    }
+                    else {
+                        alertconfirm('您已经取消删除了');
+                    }
+                },  
+                title: "删除确认提示框",  
+            });
+        }
+
+        function alertconfirm(message) {
+
+            bootbox.alert({
+                buttons: {
+                    ok: {
+                        label: '确定',
+                        className: 'btn-danger'
+                    }
+                },
+                message: message,
+                callback: function (result) {
+                    if (result) {
+                        window.location(url);
+                    }
+                },
+                title: "信息提示框",
+            });
+        }
         $(document).ready(function () {
+           
+            //单选按钮样式加载
 
             $('[name="Status"]').iCheck({
                 labelHover: false,
@@ -204,7 +254,7 @@
                 radioClass: 'iradio_square-green',
                 increaseArea: '20%'
             });
-
+            //开关按钮样式加载
             $('[name="status"]').bootstrapSwitch({
                 onText: "启用",
                 offText: "禁用",
@@ -227,7 +277,7 @@
                 }
             });
 
-
+            //表单验证
             $('#addSysUserForm').bootstrapValidator({
                 //        live: 'disabled',
                 message: 'This value is not valid',

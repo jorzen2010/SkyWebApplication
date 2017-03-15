@@ -200,6 +200,7 @@
     <Content Include="bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
+    <Content Include="plugins\bootbox.min.js" />
     <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.css" />
     <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
