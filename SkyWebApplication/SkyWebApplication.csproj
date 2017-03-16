@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChnCharInfo">
+      <HintPath>..\packages\Microsoft.International.Converters.PinYinConverter.1.0.0\lib\ChnCharInfo.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data">
       <HintPath>..\packages\Microsoft.ApplicationBlocks.Data.2.0.0\lib\net45\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
@@ -170,6 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SysRoleController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
@@ -200,6 +204,10 @@
     <Content Include="bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
+    <Content Include="plugins\avartar\css\cropper.css" />
+    <Content Include="plugins\avartar\css\sitelogo.css" />
+    <Content Include="plugins\avartar\js\cropper.js" />
+    <Content Include="plugins\avartar\js\sitelogo.js" />
     <Content Include="plugins\bootbox.min.js" />
     <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.css" />
     <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.min.css" />
@@ -1150,6 +1158,8 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Resource\css\SkyWeb.css" />
+    <Content Include="Resource\img\avatar.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bootstrap\css\bootstrap-theme.css.map" />
@@ -1316,7 +1326,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\SkyWeb.js" />
+    <Content Include="Resource\js\SkyWeb.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="validatejs\bootstrapValidator.js" />
     <Content Include="validatejs\bootstrapValidator.min.js" />
@@ -1388,11 +1398,14 @@
     <Content Include="Views\SysUser\Create.cshtml" />
     <Content Include="Views\Home\Add - 复制.cshtml" />
     <Content Include="Views\Home\Datatable.cshtml" />
+    <Content Include="Views\Home\Xiangqing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resource\Upload\" />
     <Folder Include="Views\Ajax\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1400,6 +1413,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{8b1319ab-c9bc-468e-9ca6-032747e7bd1a}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

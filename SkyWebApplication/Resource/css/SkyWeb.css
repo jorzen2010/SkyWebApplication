@@ -1,0 +1,12 @@
+﻿body {
+}
+.avatar-img {
+    border: 3px solid #d2d6de;
+    border-radius: 50%;
+    height: 160px;
+    margin: 2px;
+    padding: 3px;
+    text-align: center;
+    width: 160px;
+}
+

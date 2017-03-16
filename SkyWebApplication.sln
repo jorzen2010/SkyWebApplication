@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyWebApplication", "SkyWebApplication\SkyWebApplication.csproj", "{C08090FD-DC31-4E09-9A3E-070446F3597B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{8B1319AB-C9BC-468E-9CA6-032747E7BD1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C08090FD-DC31-4E09-9A3E-070446F3597B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C08090FD-DC31-4E09-9A3E-070446F3597B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C08090FD-DC31-4E09-9A3E-070446F3597B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B1319AB-C9BC-468E-9CA6-032747E7BD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1319AB-C9BC-468E-9CA6-032747E7BD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1319AB-C9BC-468E-9CA6-032747E7BD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1319AB-C9BC-468E-9CA6-032747E7BD1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -97,7 +97,8 @@ namespace SkyWebApplication.Controllers
             }
             return View(sysuser);
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult UpdateStatus(int? id,bool status)
         {
             Message msg = new Message();
@@ -150,13 +151,36 @@ namespace SkyWebApplication.Controllers
         }
 
         // POST: /SysUser/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    SysUser sysuser = db.SysUsers.Find(id);
+        //    db.SysUsers.Remove(sysuser);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult DeleteConfirmed(int id)
         {
-            SysUser sysuser = db.SysUsers.Find(id);
-            db.SysUsers.Remove(sysuser);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Message msg = new Message();
+            if (id == null)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "找不到ID";
+            }
+            else
+            {
+                SysUser sysuser = db.SysUsers.Find(id);
+                db.SysUsers.Remove(sysuser);
+                db.SaveChanges();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "删除成功";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
