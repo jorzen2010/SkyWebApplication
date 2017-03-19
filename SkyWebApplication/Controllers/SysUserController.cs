@@ -38,12 +38,6 @@ namespace SkyWebApplication.Controllers
 
         }
 
-        //原来的首页，准备删除
-        //// GET: /SysUser/
-        //public ActionResult Index()
-        //{
-        //    return View(db.SysUsers.ToList());
-        //}
 
         // GET: /SysUser/Details/5
         public ActionResult Details(int? id)
@@ -119,20 +113,49 @@ namespace SkyWebApplication.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdateAvatarUrl(int? id, string AvatarUrl)
+        {
+            Message msg = new Message();
+            if (id == null)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "找不到ID";
+            }
+            SysUser sysuser = db.SysUsers.Find(id);
+            sysuser.AvatarUrl = AvatarUrl;
+            if (ModelState.IsValid)
+            {
+                db.Entry(sysuser).State = EntityState.Modified;
+                db.SaveChanges();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "已经更改为" + sysuser.AvatarUrl.ToString();
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
         // POST: /SysUser/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,UserName,Password,Email")] SysUser sysuser)
+        public ActionResult Edit(FormCollection collection)
         {
+            var sysuser = new SysUser();
+            //int id = Convert.ToInt32(fc["ID"]);
+            //SysUser sysuser = db.SysUsers.Find(id);
+            //在这里转换  
+        //    TryUpdateModel<SysUser>(sysuser, collection);  
             if (ModelState.IsValid)
             {
+                TryUpdateModel<SysUser>(sysuser, collection);  
                 db.Entry(sysuser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(sysuser);
+           // return View(sysuser);
+            return RedirectToAction("/home/Index");
         }
 
         // GET: /SysUser/Delete/5
@@ -163,7 +186,7 @@ namespace SkyWebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int? id)
         {
             Message msg = new Message();
             if (id == null)

@@ -1,12 +1,11 @@
 ﻿body {
 }
-.avatar-img {
+.sky-img-avatar {
     border: 3px solid #d2d6de;
-    border-radius: 50%;
     height: 160px;
-    margin: 2px;
-    padding: 3px;
     text-align: center;
     width: 160px;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    cursor: pointer;
 }
 

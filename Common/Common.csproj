@@ -54,7 +54,9 @@
     <Compile Include="CommonTools.cs" />
     <Compile Include="CommonValidate.cs" />
     <Compile Include="DataConvertHelper.cs" />
+    <Compile Include="DateTools.cs" />
     <Compile Include="FileTools.cs" />
+    <Compile Include="ImageTools.cs" />
     <Compile Include="JsonHepler.cs" />
     <Compile Include="Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

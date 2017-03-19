@@ -1,10 +1,23 @@
-﻿using System;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Web;
+//using System.Web.Mvc;
+//using Common;
+//using Newtonsoft.Json;
+//using SkyWebApplication.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Drawing;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using Common;
 using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 using SkyWebApplication.DAL;
 
 namespace SkyWebApplication.Controllers
@@ -13,28 +26,9 @@ namespace SkyWebApplication.Controllers
     {
         //
         // GET: /File/
-        //public ActionResult Upload(string folder)
-        //{
-        //    if (Request.Files.Count > 0 && Request.Files[0] != null && !string.IsNullOrEmpty(Request.Files[0].FileName))
-        //    {
-        //        try
-        //        {
-        //            string fileName = CommonServices.Uploadfiles(folder, Request.Files[0]);
-        //            var a = new { success = true, file = fileName, url = fileName };
 
-
-        //            return Content(JsonConvert.SerializeObject(a));
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            var b = new { success = false, msg = ex.Message };
-        //            return Content(JsonConvert.SerializeObject(b));
-        //        }
-        //    }
-        //    var c = new { success = false, msg = "未选择文件" };
-        //    return Content(JsonConvert.SerializeObject(c));
-        //}
-
+  
+        
         public JsonResult Upload(string folder)
         {
             Message msg = new Message();
@@ -63,7 +57,7 @@ namespace SkyWebApplication.Controllers
             }
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
+     
 
-       
 	}
 }

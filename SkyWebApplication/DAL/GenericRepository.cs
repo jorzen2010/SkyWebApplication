@@ -17,8 +17,6 @@ namespace SkyWebApplication.DAL
             this.context = context;
             this.dbSet = context.Set<TEntity>();
         }
-       
-       
 
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,

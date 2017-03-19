@@ -17,6 +17,7 @@ namespace SkyWebApplication.Controllers
     {
         private SkyWebContext db = new SkyWebContext();
         private UnitOfWork unitOfWork = new UnitOfWork();
+        
 
         // GET: /不带分页
         //public ActionResult Index()

@@ -4,8 +4,8 @@
 @section Topcss {
     <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
     <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
-    <link href="~/plugins/avartar/css/cropper.css" rel="stylesheet" type="text/css" />
-    <link href="~/plugins/avartar/css/sitelogo.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resource/css/SkyWeb.css" rel="stylesheet" type="text/css" />
 }
 
 <!-- Content Header (Page header) -->
@@ -28,188 +28,237 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header text-center">
-                    <div id="crop-avatar" class="col-md-12  text-center" style="float:none;display:block;margin-left:auto;margin-right:auto; }">
-                        <div class="avatar-view" title="" data-original-title="点击更换头像">
-                            <img src="/Resource/img/avatar.jpg" alt="Logo" class="img-circle img-responsive" id="avatarimg">
-                        </div>
+
+                    <div class="container">
+                        <img src="~/plugins/flashavatar/img/avatar.jpg"  alt="Avatar" class="img-circle sky-img-avatar" data-toggle="tooltip" data-placement="bottom" title="点击头像上传更换">
+                        <h5>
+                            <button class="btn btn-sm btn-default" type="button" data-toggle="modal" data-target="#Myavatarupload">
+                                <i class="fa fa-camera"> 上传/更改头像</i>
+                            </button>
+                        </h5>
                     </div>
-                    <br />
-                    <button class="btn btn-sm btn-camera" type="button">
-                        <i class="fa fa-camera"> 上传/更改头像</i>
-                    </button>
+
                 </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <form class="form-horizontal">
-                        <div class="box-body">
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="用户名">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="用户名">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-                                    <div class="col-sm-10" style="padding-top:7px;">
-                                        <input type="radio" class="form-control" name="Status" value="true"><b>&nbsp;&nbsp;启用&nbsp;&nbsp;</b>
-                                        <input type="radio" class="form-control" name="Status" value="false">&nbsp;&nbsp;禁用&nbsp;&nbsp;
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="用户名">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-                                    <div class="col-sm-10">
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> 记住我
-                                        </label>
-                                    </div>
+                                <label for="realName" class="col-sm-3 control-label">用户名</label>
+                                <div class="col-sm-8 input-group">
+                                    <input type="text" class="form-control" disabled="disabled" id="realName" value="Tom">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="realName" class="col-sm-3 control-label">姓名</label>
+                                <div class="col-sm-8 input-group">
+                                    <input type="text" class="form-control" id="realName" placeholder="姓名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">生日类别</label>
+                                <div class="col-sm-8 input-group" style="padding-top:7px;">
+
+                                    <input type="radio" name="BirthdayType" value="公历"><b>&nbsp;&nbsp;公历&nbsp;&nbsp;</b>
+                                    <input type="radio" name="Status" value="农历">&nbsp;&nbsp;农历&nbsp;&nbsp;
+                                </div>
+                            </div><div class="form-group">
+                                <label for="realName" class="col-sm-3 control-label">手机</label>
+                                <div class="col-sm-8 input-group">
+                                    <input type="text" class="form-control" id="realName" placeholder="手机">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="realName" class="col-sm-3 control-label">QQ号</label>
+                                <div class="col-sm-8 input-group">
+                                    <input type="text" class="form-control" id="realName" placeholder="QQ号">
                                 </div>
                             </div>
                         </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-default">取消</button>
-                            <button type="submit" class="btn btn-info pull-right">确定</button>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="realName" class="col-sm-3 control-label">邮箱</label>
+                                <div class="col-sm-8 input-group">
+                                    <input type="text" class="form-control" id="realName" placeholder="邮箱">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">性别</label>
+                                <div class="col-sm-8 input-group" style="padding-top:7px;">
+
+                                    <input type="radio" name="Status" value="男"><b>&nbsp;&nbsp;男&nbsp;<i class="fa fa-fw fa-male"></i></b>
+                                    <input type="radio" name="Status" value="女"><b>&nbsp;&nbsp;女&nbsp;<i class="fa fa-fw fa-female"></i></b>
+</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">生日</label>
+                                <div class="col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input class="form-control" placeholder="生日" type="text" id="datetimepicker" data-date-format="yyyy年mm月dd日">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="realName" class="col-sm-3 control-label">座机</label>
+                                <div class="col-sm-8 input-group">
+                                    <input type="text" class="form-control" id="realName" placeholder="座机">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="realName" class="col-sm-3 control-label">微信号</label>
+                                <div class="col-sm-8 input-group">
+                                    <input type="text" class="form-control" id="realName" placeholder="微信号">
+                                </div>
+                            </div>
+
                         </div>
-                        <!-- /.box-footer -->
-                    </form>
+
+                  
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-default">取消</button>
+                        <button type="submit" class="btn btn-info pull-right">确定</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
             </div>
             <!-- /.box -->
         </div>
         <!--/.col (right) -->
     </div>
-    </div>
     <!-- /.row -->
 </section>
 <!-- /.content -->
 
-<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="Myavatarupload" tabindex="-10" role="dialog" aria-labelledby="addSysUserLabel" aria-hidden="true" >
+    <div class="modal-dialog" style="width:700px;">
         <div class="modal-content">
-            <form class="avatar-form" action="#" enctype="multipart/form-data" method="post" id="uploadform">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal" type="button">×</button>
-                    <h4 class="modal-title" id="avatar-modal-label">Change Logo Picture</h4>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button><h4 class="modal-title" id="addModalLabel">
+                上传头像
+                </h4>
+                
+            </div>
+            <div class="modal-body">
+                <div class="container" id="main">
+                    <div class="demo">
+                        <p id="swfContainer">
+                            本组件需要安装Flash Player后才可使用，请从<a href="http://dl.pconline.com.cn/html_2/1/114/id=8122&pn=0.html" target="_blank">这里</a>下载安装。
+                        </p>
+                       
+                        </div>
                 </div>
-                <div class="modal-body">
-                    <div class="avatar-body">
-                        <div class="avatar-upload">
-                            <input class="avatar-src" name="avatar_src" type="hidden">
-                            <input class="avatar-data" name="avatar_data" type="hidden">
-                            <label for="avatarInput">图片上传</label>
-                            <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-9">
-                                <div class="avatar-wrapper"></div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="avatar-preview preview-lg"></div>
-                                <div class="avatar-preview preview-md"></div>
-                                <div class="avatar-preview preview-sm"></div>
-                            </div>
-                        </div>
-                        <div class="row avatar-btns">
-                            <div class="col-md-9">
-                                <div class="btn-group">
-                                    <button class="btn" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"><i class="fa fa-undo"></i> 向左旋转</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"><i class="fa fa-repeat"></i> 向右旋转</button>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-success btn-block avatar-save" type="button" id="uploadformsubmit"><i class="fa fa-save"></i> 保存修改</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+            </div>
+            <div class="modal-footer">
+                
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">
+                    取消上传头像
+                </button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
-
-<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 @section FootScripts {
-    <script type="text/javascript" src="/plugins/iCheck/icheck.js"></script>
-    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
-    <script type="text/javascript" src="/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
-    <script type="text/javascript" src="/plugins/avartar/js/cropper.js"></script>
-<script type="text/javascript" src="/plugins/avartar/js/sitelogo.js"></script>
+    <script type="text/javascript" src="~/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="~/plugins/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="~/plugins/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="~/plugins/flashavatar/swfobject.js"></script>
+    <script type="text/javascript" src="~/plugins/flashavatar/fullAvatarEditor.js"></script>
+
     <script type="text/javascript">
-    $(document).ready(function () {
+        $(document).ready(function () {
+            $('[type="radio"],[type="checkbox"]').iCheck({
+                labelHover: false,
+                cursor: true,
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+                increaseArea: '20%'
+            });
 
-        $('[type="radio"],[type="checkbox"]').iCheck({
-            labelHover: false,
-            cursor: true,
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-            increaseArea: '20%'
+            $('#datetimepicker').datetimepicker({
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $(".sky-img-avatar").click(function () {
+                $('#Myavatarupload').modal('show');
+            });
+
+            
         });
-
-        $('#uploadformsubmit').click(function () {
-            var formData = new FormData($("#uploadform")[0]);
-            $.ajax({
-                type: "POST",
-                url: "/File/Upload",
-                data: formData,// 你的formid
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data.MessageStatus == 'true') {
-                        $('#avatar-modal').modal('hide');
-                        // $('#avatarimg')
-                        document.getElementById('avatarimg').src = data.MessageUrl;
-                        //window.location.reload();
+    </script>
+<script type="text/javascript">
+    swfobject.addDomLoadEvent(function () {
+        //以下两行代码正式环境下请删除
+        //if (location.href.indexOf('http://') == -1)
+        //    alert('请于WEB服务器环境中查看、测试！\n\n既 http://*/simpleDemo.html\n\n而不是本地路径 file:///*/simpleDemo.html的方式');
+        var swf = new fullAvatarEditor("../plugins/flashavatar/fullAvatarEditor.swf", "../plugins/flashavatar/expressInstall.swf", "swfContainer", {
+            id: 'swf',
+            upload_url: '../plugins/flashavatar/upload.aspx?userid=999&username=looselive', //上传接口
+            method: 'post', //传递到上传接口中的查询参数的提交方式。更改该值时，请注意更改上传接口中的查询参数的接收方式
+            src_upload: 2, //是否上传原图片的选项，有以下值：0-不上传；1-上传；2-显示复选框由用户选择
+            avatar_box_border_width: 0,
+            avatar_sizes: '160*160',    //可以设置多个格式如下：'100*100|50*50|32*32',
+            avatar_sizes_desc: '160*160像素'  //可以设置多个格式如下：100*100像素|50*50像素|32*32像素
+        }, function (msg) {
+            switch (msg.code) {
+                default:
+                    document.getElementById("upload").style.display = "none"; 
+                case 1:
+                    //                            alert("页面成功加载了组件！");         
+                    break;
+                case 2:
+                    //                            alert("已成功加载图片到编辑面板。");
+                    document.getElementById("upload").style.display = "inline";
+                    break;
+                case 3:
+                    if (msg.type == 0) {
+                        alert("摄像头已准备就绪且用户已允许使用。");
+                    }
+                    else if (msg.type == 1) {
+                        alert("摄像头已准备就绪但用户未允许使用！");
                     }
                     else {
-                        alert("失败");
+                        alert("摄像头被占用！");
                     }
-                }
-            });
-            });
-
-
-
-
-        });
-
-    </script>
+                    break;
+                case 5:
+                    if (msg.type == 0) {
+                        if (msg.content.sourceUrl) {
+                           // alert("原图已成功保存至服务器，url为：\n" + msg.content.sourceUrl + "\n\n" + "头像已成功保存至服务器，url为：\n" + msg.content.avatarUrls.join("\n\n") + "\n\n传递的userid=" + msg.content.userid + "&username=" + msg.content.username);
+                            //alert(msg.content);
+                            $('#Myavatarupload').modal('hide');
+                        }
+                        else {
+                           // alert("头像已成功保存至服务器，url为：\n" + msg.content.avatarUrls.join("\n\n") + "\n\n传递的userid=" + msg.content.userid + "&username=" + msg.content.username);
+                            // alert(msg.content);
+                            $('#Myavatarupload').modal('hide');
+                            var path ='../plugins/flashavatar/'+ msg.content.avatarUrls;
+                           // $(".sky-img-avatar").attr('src') = '~/Resource/img/picture2.jpg';
+                            $(".sky-img-avatar").attr('src', path);
+                        }
+                    }
+                    break;
+                   
+            }
+        }
+        );
+        document.getElementById("upload").onclick = function () {
+            swf.call("upload");
+        };
+    });
+</script>
 }

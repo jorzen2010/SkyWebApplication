@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "Video";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        General Form Elements
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header text-center">
+                    
+                    <div class="container" id="crop-avatar">
+                        <!-- Current avatar -->
+                        <div class="avatar-view" title="Change the avatar">
+                            <img src="~/Resource/img/picture.jpg" alt="Avatar">
+                        </div>
+                    </div>
+                    <div class="container" id="main">
+                        <div class="demo">
+                            <p id="swfContainer">
+                                本组件需要安装Flash Player后才可使用，请从<a href="http://dl.pconline.com.cn/html_2/1/114/id=8122&pn=0.html" target="_blank">这里</a>下载安装。
+                            </p>
+                            <button type="button" id="upload" style="display:none;margin-top:8px;">swf外定义的上传按钮，点击可执行上传保存操作</button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal">
+                    <div class="box-body">
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="用户名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="用户名">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <input type="radio" class="form-control" name="Status" value="true"><b>&nbsp;&nbsp;启用&nbsp;&nbsp;</b>
+                                    <input type="radio" class="form-control" name="Status" value="false">&nbsp;&nbsp;禁用&nbsp;&nbsp;
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="用户名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> 记住我<button class="btn btn-sm btn-camera" type="button">
+    <i class="fa fa-camera"> 上传/更改头像</i>
+</button>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-default">取消</button>
+                        <button type="submit" class="btn btn-info pull-right">确定</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div> 
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+@section FootScripts {
+    <script type="text/javascript" src="~/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="~/plugins/flashavartar/swfobject.js"></script>
+    <script type="text/javascript" src="~/plugins/flashavartar/fullAvatarEditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[type="radio"],[type="checkbox"]').iCheck({
+                labelHover: false,
+                cursor: true,
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+                increaseArea: '20%'
+            });
+        });
+    </script>
+<script type="text/javascript">
+    swfobject.addDomLoadEvent(function () {
+        //以下两行代码正式环境下请删除
+        //if (location.href.indexOf('http://') == -1)
+        //    alert('请于WEB服务器环境中查看、测试！\n\n既 http://*/simpleDemo.html\n\n而不是本地路径 file:///*/simpleDemo.html的方式');
+        var swf = new fullAvatarEditor("../plugins/flashavartar/fullAvatarEditor.swf", "../plugins/flashavartar/expressInstall.swf", "swfContainer", {
+            id: 'swf',
+            upload_url: '../plugins/flashavartar/upload.aspx?userid=999&username=looselive', //上传接口
+            method: 'post', //传递到上传接口中的查询参数的提交方式。更改该值时，请注意更改上传接口中的查询参数的接收方式
+            src_upload: 2, //是否上传原图片的选项，有以下值：0-不上传；1-上传；2-显示复选框由用户选择
+            avatar_box_border_width: 0,
+            avatar_sizes: '100*100|50*50|32*32',
+            avatar_sizes_desc: '100*100像素|50*50像素|32*32像素'
+        }, function (msg) {
+            switch (msg.code) {
+                case 1:
+                    //                            alert("页面成功加载了组件！");
+                    break;
+                case 2:
+                    //                            alert("已成功加载图片到编辑面板。");
+                    document.getElementById("upload").style.display = "inline";
+                    break;
+                case 3:
+                    if (msg.type == 0) {
+                        alert("摄像头已准备就绪且用户已允许使用。");
+                    }
+                    else if (msg.type == 1) {
+                        alert("摄像头已准备就绪但用户未允许使用！");
+                    }
+                    else {
+                        alert("摄像头被占用！");
+                    }
+                    break;
+                case 5:
+                    if (msg.type == 0) {
+                        if (msg.content.sourceUrl) {
+                            alert("原图已成功保存至服务器，url为：\n" + msg.content.sourceUrl + "\n\n" + "头像已成功保存至服务器，url为：\n" + msg.content.avatarUrls.join("\n\n") + "\n\n传递的userid=" + msg.content.userid + "&username=" + msg.content.username);
+                        }
+                        else {
+                            alert("头像已成功保存至服务器，url为：\n" + msg.content.avatarUrls.join("\n\n") + "\n\n传递的userid=" + msg.content.userid + "&username=" + msg.content.username);
+                        }
+                    }
+                    break;
+            }
+        }
+        );
+        document.getElementById("upload").onclick = function () {
+            swf.call("upload");
+        };
+    });
+</script>
+
+}

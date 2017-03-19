@@ -26,6 +26,12 @@ namespace SkyWebApplication.Controllers
 
             return View();
         }
+        public ActionResult FileUpload()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
         public ActionResult Xiangqing()
         {
             ViewBag.Message = "Your contact page.";
