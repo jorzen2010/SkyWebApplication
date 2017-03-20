@@ -12,6 +12,7 @@ namespace SkyWebApplication.DAL
         protected override void Seed(SkyWebContext context)
         {
             base.Seed(context);
+
             #region 初始化配置
 
             var protocol = new System.Text.StringBuilder(942);
@@ -76,6 +77,9 @@ namespace SkyWebApplication.DAL
             context.SaveChanges();
 
             #endregion 初始化配置
+
+
+            #region 用户角色初始化
             var sysUsers = new List<SysUser>
             {
                 new SysUser{UserName="Tom",Email="Tom@163.com",Password="1",Status=true},
@@ -93,7 +97,20 @@ namespace SkyWebApplication.DAL
             sysRoles.ForEach(s => context.SysRoles.Add(s));
             context.SaveChanges();
 
+            var categorys = new List<Category>
+            {
+                new Category{CategoryName="文章类型",CategoryInfo="文章类型说明",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="学历",CategoryInfo="文章类型说明",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="通知公告",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="新闻资讯",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="博士",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="硕士",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0}
 
+            };
+            categorys.ForEach(s => context.Categorys.Add(s));
+            context.SaveChanges();
+
+            #endregion 初始化配置
         }
     }
 }

@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.IO;
 
 namespace Common
 {
-    public class CommonServices
+    public class FileServices
     {
-        //上传文件服务
-        public static string Uploadfiles(string folder, HttpPostedFileBase file)
+        //使用说明：根目录最前方应该没有分隔符
+        // string rootpath = "Resource"; 一层
+        // string rootpath = "Resource/Upload";两层
+        public static string Uploadfiles(string rootpath,string folder, HttpPostedFileBase file)
         {
-            string UploadPath = "Resource/Upload";
-
+            Random random = new Random();
             //提供平台特定的替换字符，该替换字符用于在反映分层文件系统组织的路径字符串中分隔目录级别
             var sep = Path.AltDirectorySeparatorChar.ToString();
             //指定为根目录
-            var root = "~" + sep + UploadPath + sep;
+            var root = "~" + sep + rootpath + sep;
             //拼接成路径
             var path = root + folder + sep;
             //找到这个路径
@@ -31,21 +26,18 @@ namespace Common
             {
                 Directory.CreateDirectory(phicyPath);
             }
-
+            //获取文件类型
             string extension = file.FileName.Substring(file.FileName.LastIndexOf('.'));
+            //拼接文件名
+            string filename = System.DateTime.Now.ToUniversalTime().Ticks.ToString() + random.Next(1000, 9999).ToString() + extension;
 
-            string filename = CommonTools.ToUnixTime(System.DateTime.Now).ToString() + CommonTools.getRandomNumber() +
-                              extension;
-
-
+            //保存文件
             file.SaveAs(phicyPath + filename);
 
-            string fileuploadpath = "/" + UploadPath + "/" + folder + "/" + filename;
+            string fileuploadpath = path + filename;
 
             return fileuploadpath;
 
         }
-
-
     }
 }

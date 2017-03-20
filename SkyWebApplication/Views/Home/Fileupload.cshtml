@@ -72,17 +72,17 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#imgUpload")
+       $("#imgUpload")
         .fileinput({
             language: 'zh',
-            uploadUrl: "/File/Upload?folder=zhaozheng",
+            uploadUrl: "/File/Upload?folder=zhaozheng&rootpath=Resource/Upload",
             autoReplace: true,
             maxFileCount: 5,
             allowedFileExtensions: ["jpg", "png", "gif"],
             browseClass: "btn btn-primary", //按钮样式
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>"
         })
-    .on("fileuploaded", function (e, data) {
+       .on("fileuploaded", function (e, data) {
         var res = data.response;
         if (res.MessageStatus == 'true') {
             alertconfirm("上传成功");

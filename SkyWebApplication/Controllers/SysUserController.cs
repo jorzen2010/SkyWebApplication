@@ -27,12 +27,10 @@ namespace SkyWebApplication.Controllers
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "ID";
-            pager.FiledOrder = "ID asc";
+            pager.FiledOrder = "ID desc";
             pager = CommonDal.GetPager(pager);
             IList<SysUser> sysUsers = DataConvertHelper<SysUser>.ConvertToModel(pager.EntityDataTable);
             var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pager.PageNo, pager.PageSize, pager.Amount);
-
-
             return View(sysUsersAsIPageList);
         }
 
@@ -75,20 +73,6 @@ namespace SkyWebApplication.Controllers
         //                    select s).Skip((pageIndex - 1) * pageSize).Take(pageSize);
         //    totalCount = sysUsers.Count();
         //    return sysUsers.ToList();
-
-        //}
-
-        //public ActionResult Search(string queryfilter,int? page)
-        //{
-        //    Pager pager=new Pager();
-        //    pager.PageSize=2;
-        //    pager.PageNo=page ?? 1;
-        //    int pageIndex =pager.PageNo ;
-        //    int pageSize = 2;
-        //    int totalCount = 0;
-        //    var sysUsers = GetsysUsers(pageIndex, pageSize, ref totalCount, 1>0);
-        //    var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pageIndex, pageSize, totalCount);
-        //    return View(sysUsersAsIPageList);
 
         //}
 

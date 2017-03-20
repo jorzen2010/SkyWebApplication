@@ -1,12 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Mvc;
-//using Common;
-//using Newtonsoft.Json;
-//using SkyWebApplication.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,17 +18,14 @@ namespace SkyWebApplication.Controllers
     {
         //
         // GET: /File/
-
-  
-        
-        public JsonResult Upload(string folder)
+        public JsonResult Upload(string rootpath,string folder)
         {
             Message msg = new Message();
             if (Request.Files.Count > 0 && Request.Files[0] != null && !string.IsNullOrEmpty(Request.Files[0].FileName))
             {
                 try
                 {
-                    string fileName = CommonServices.Uploadfiles(folder, Request.Files[0]);
+                    string fileName = FileServices.Uploadfiles(rootpath, folder, Request.Files[0]);
                     msg.MessageStatus = "true";
                     msg.MessageInfo = "上传成功";
                     msg.MessageUrl = fileName;
@@ -44,9 +33,8 @@ namespace SkyWebApplication.Controllers
                 }
                 catch (Exception ex)
                 {
-                    var b = new { success = false, msg = ex.Message };
                     msg.MessageStatus = "false";
-                    msg.MessageInfo = "上传失败";
+                    msg.MessageInfo = "上传失败" + ex.Message;
                 }
             }
             else

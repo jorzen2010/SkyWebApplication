@@ -1,0 +1,58 @@
+﻿@model SkyWebApplication.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>赵征专用-Details</h2>
+
+<div>
+    <h4>Category</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryParentID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryParentID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategorySort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategorySort)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

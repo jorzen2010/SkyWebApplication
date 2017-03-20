@@ -11,25 +11,23 @@ namespace Common
 {
     public class EmailServices
     {
-        public static string smtpClient = ConfigurationManager.AppSettings["smtpClient"];
-        public static string EmailAddress = ConfigurationManager.AppSettings["EmailAddress"];
-        public static string EmailPassword = ConfigurationManager.AppSettings["EmailPassword"];
+
         //发送邮件服务
-        public static void SendEmail(string toMail, string fromMail, string displayName, string mailTitle, string mailContent)
+        public static void SendEmail(EmailEntity mailEntity)
         {
 
             MailMessage mail = new MailMessage();
 
-            mail.To.Add(toMail);
-            mail.From = new MailAddress(fromMail, displayName, System.Text.Encoding.GetEncoding("utf-8"));
+            mail.To.Add(mailEntity.ToMail);
+            mail.From = new MailAddress(mailEntity.FromMail, mailEntity.DisplayName, System.Text.Encoding.GetEncoding("utf-8"));
 
-            mail.Subject = mailTitle;
-            mail.Body = mailContent;
+            mail.Subject = mailEntity.SMTPClient;
+            mail.Body = mailEntity.MailContent;
             mail.IsBodyHtml = true;
             try
             {
-                SmtpClient smtpClient = new SmtpClient("smtp.qq.com");
-                smtpClient.Credentials = new NetworkCredential("277602146@qq.com", "sky20100@qq");
+                SmtpClient smtpClient = new SmtpClient(mailEntity.SMTPClient);
+                smtpClient.Credentials = new NetworkCredential(mailEntity.EmailAddress, mailEntity.EmailPassword);
                 smtpClient.Send(mail);
 
             }
@@ -39,5 +37,18 @@ namespace Common
                 throw (exception);
             }
         }
+    }
+
+    public class EmailEntity
+    {
+        public string SMTPClient { get; set; }
+        public string EmailAddress { get; set; }
+        public string EmailPassword { get; set; }
+        public string ToMail { get; set; }
+        public string FromMail { get; set; }
+        public string DisplayName { get; set; }
+        public string MailTitle { get; set; }
+        public string MailContent { get; set; }
+    
     }
 }

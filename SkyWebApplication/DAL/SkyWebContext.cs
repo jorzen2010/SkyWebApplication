@@ -25,6 +25,7 @@ namespace SkyWebApplication.DAL
         public DbSet<SysUser> SysUsers { get; set; }
         public DbSet<SysRole> SysRoles { get; set; }
         public DbSet<SysUserRole> SysUserRoles { get; set; }
+        public DbSet<Category> Categorys { get; set; }
 
     }
 }

@@ -11,6 +11,7 @@ namespace SkyWebApplication.Models
         public string CategoryName { get; set; }
         public string CategoryInfo { get; set; }
         public int CategoryParentID { get; set; }
-        public int CategoryStatus { get; set; }
+        public bool CategoryStatus { get; set; }
+        public int CategorySort { get; set; }
     }
 }
