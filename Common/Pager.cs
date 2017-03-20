@@ -41,7 +41,8 @@ namespace Common
         /// </summary>
         public int PageNo
         {
-            get { return _pageNo - 1 == -1 ? 0 : _pageNo - 1; }
+          //  get { return _pageNo - 1 == -1 ? 1 : _pageNo - 1; }
+            get { return _pageNo ; }
             set { _pageNo = value; }
         }
         /// <summary>

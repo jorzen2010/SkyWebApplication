@@ -21,7 +21,7 @@ namespace SkyWebApplication.DAL
            // base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-
+        public DbSet<Setting> Settings { get; set; }
         public DbSet<SysUser> SysUsers { get; set; }
         public DbSet<SysRole> SysRoles { get; set; }
         public DbSet<SysUserRole> SysUserRoles { get; set; }

@@ -94,7 +94,7 @@
                                         @Html.AntiForgeryToken()
                                         <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
                                         <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.ID','/SysUser/DeleteConfirmed/')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-                                        <a class="btn btn-info btn-xs" href="@Url.Action("Details", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-lock"></span> 重置密码</a>
+                                        <a class="btn btn-info btn-xs" href="@Url.Action("Details", "SysUser", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span> 详情编辑</a>
 
                                     </td>
                                 </tr>
@@ -106,7 +106,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <ul class="pull-right">
-                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Search", new { page = page,username=Request["username"] }),
     new PagedListRenderOptions
     {
         LinkToPreviousPageFormat = "上一页",

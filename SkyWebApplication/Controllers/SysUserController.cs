@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using SkyWebApplication.Models;
 using SkyWebApplication.DAL;
 using PagedList;
+using Common;
 
 namespace SkyWebApplication.Controllers
 {
@@ -16,27 +17,80 @@ namespace SkyWebApplication.Controllers
     {
         private SkyWebContext db = new SkyWebContext();
 
-        // GET: /获取分页数据/
+        // GET: /用存储过程获取分页数据/
+
         public ActionResult Index(int? page)
         {
-            int pageIndex = page ?? 1;
-            int pageSize = 2;
-            int totalCount = 0;
-            var sysUsers = GetsysUsers(pageIndex, pageSize, ref totalCount);
-            var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pageIndex, pageSize, totalCount);
+            Pager pager = new Pager();
+            pager.table = "SysUser";
+            pager.strwhere = "1=1";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "ID";
+            pager.FiledOrder = "ID asc";
+            pager = CommonDal.GetPager(pager);
+            IList<SysUser> sysUsers = DataConvertHelper<SysUser>.ConvertToModel(pager.EntityDataTable);
+            var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pager.PageNo, pager.PageSize, pager.Amount);
+
+
             return View(sysUsersAsIPageList);
-
         }
 
-        public List<SysUser> GetsysUsers(int pageIndex, int pageSize, ref int totalCount)
+        public ActionResult Search(int? page,string username)
         {
-            var sysUsers = (from p in db.SysUsers
-                            orderby p.ID descending
-                            select p).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            totalCount = db.SysUsers.Count();
-            return sysUsers.ToList();
-
+            
+            Pager pager = new Pager();
+            pager.table = "SysUser";
+            pager.strwhere = "UserName='" + username + "'";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "ID";
+            pager.FiledOrder = "ID asc";
+            pager = CommonDal.GetPager(pager);
+            IList<SysUser> sysUsers = DataConvertHelper<SysUser>.ConvertToModel(pager.EntityDataTable);
+            var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(sysUsersAsIPageList);
         }
+
+
+
+        // GET: /获取分页数据,分页取出数据，注意totalCount的取值
+        //public ActionResult Index(int? page)
+        //{
+        //    int pageIndex = page ?? 1;
+        //    int pageSize = 2;
+        //    int totalCount = 0;
+        //    bool strwhere = 1 > 0;
+        //    var sysUsers = GetsysUsers(pageIndex, pageSize, ref totalCount, strwhere);
+        //    var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pageIndex, pageSize, totalCount);
+        //    return View(sysUsersAsIPageList);
+
+        //}
+
+        //public List<SysUser> GetsysUsers(int pageIndex, int pageSize, ref int totalCount, bool strwhere)
+        //{
+        //    var sysUsers = (from s in db.SysUsers
+        //                    orderby s.ID descending
+        //                    where s.UserName=="zhaozheng"
+        //                    select s).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        //    totalCount = sysUsers.Count();
+        //    return sysUsers.ToList();
+
+        //}
+
+        //public ActionResult Search(string queryfilter,int? page)
+        //{
+        //    Pager pager=new Pager();
+        //    pager.PageSize=2;
+        //    pager.PageNo=page ?? 1;
+        //    int pageIndex =pager.PageNo ;
+        //    int pageSize = 2;
+        //    int totalCount = 0;
+        //    var sysUsers = GetsysUsers(pageIndex, pageSize, ref totalCount, 1>0);
+        //    var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pageIndex, pageSize, totalCount);
+        //    return View(sysUsersAsIPageList);
+
+        //}
 
 
         // GET: /SysUser/Details/5

@@ -188,6 +188,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationSetting.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SysRole.cs" />
@@ -1723,6 +1724,7 @@
     <Content Include="Views\Home\Xiangqing.cshtml" />
     <Content Include="Views\Home\Fileupload.cshtml" />
     <Content Include="Views\SysUser\Edit.cshtml" />
+    <Content Include="Views\SysUser\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,7 +14,7 @@ namespace Common
 {
     public class CommonDal
     {
-        public static string ConnectionString = ConfigurationManager.AppSettings["connectionStrings"];
+        public static string ConnectionString = ConfigurationManager.AppSettings["SkyWebConnection"];
 
         #region 插入操作
         public static string Insert(SqlParameter[] arParames, string StoredProcedure)
@@ -160,7 +160,7 @@ namespace Common
 
             //@PageCurrent --要显示的页码
             arParms[2] = new SqlParameter("@PageCurrent", SqlDbType.Int);
-            arParms[2].Value = pager.PageNo + 1;
+            arParms[2].Value = pager.PageNo ;
 
             // @PageSize --每页的大小(记录数)
             arParms[3] = new SqlParameter("@PageSize", SqlDbType.Int);
