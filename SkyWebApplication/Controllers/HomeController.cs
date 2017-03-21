@@ -154,10 +154,18 @@ namespace SkyWebApplication.Controllers
             List<Category> data = Getcategorys(0);
             foreach (var tree in data)
             {
-                categorysNodes.Add(new Node(tree.CategoryParentID, tree.CategoryName, null));
-        
-                Console.WriteLine(tree.CategoryName);
-                AddChildNode(tree.ID);
+                List<Category> ChildCategoryList = Getcategorys(tree.ID);
+                List<Node> ChildCategorysNodes = new List<Node>();
+                if (ChildCategoryList.Count > 0)
+                {
+                    foreach (var childTree in ChildCategoryList)
+                    {
+                       // ChildCategorysNodes.Add(new Node(ChildCategoryList[i].ID,ChildCategoryList[i].ID,null));
+                        categorysNodes.Add(new Node(tree.CategoryParentID, tree.CategoryName, ChildCategorysNodes));
+                    
+                    }
+                
+                }
             }
             return Json(categorysNodes, JsonRequestBehavior.AllowGet);
         }

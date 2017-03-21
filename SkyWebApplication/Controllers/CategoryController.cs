@@ -15,11 +15,86 @@ namespace SkyWebApplication.Controllers
     {
         private SkyWebContext db = new SkyWebContext();
 
-        // GET: /Category/
+        public List<Category> GetAllcategorys()
+        {
+            var categorys = from s in db.Categorys
+                            orderby s.ID descending
+                            select s;
+
+            return categorys.ToList();
+
+        }
+
+
+        private List<Category> CategoryCacheAllList { get; set; }
+
+        [Route("")]
+        public HttpResponseMessage Get()
+        {
+
+            var list =new List<Category> ();
+            if (list == null)
+            {
+                CategoryCacheAllList = GetAllcategorys(); //取得数据库里面所有数据
+
+               // CategoryCacheAllList = CategoryService.GetCacheList(); //取得数据库里面所有数据
+                list = new List<Category>();
+                CategoryJson(list, "1");
+              //  CacheHelper<List<Category>>.SetCache(CategoryAllListCacheKEY, list);
+            }
+            //return Request.CreateResponse(HttpStatusCode.OK, list);
+            //下面的代码这个没试
+            string json = JsonConvert.SerializeObject(categoryList, Formatting.Indented);
+            return json; 
+        }
+
+
+        /// <summary>
+        /// 取得兄弟节点
+        /// </summary>
+        /// <param name="categoryList"></param>
+        /// <param name="parentCode"></param>
+        public void CategoryJson(List<Category> categoryList, string parentCode)
+        {
+            var list = CategoryCacheAllList.FindAll(p => p.ParentCode == parentCode);
+            if (list.Count > 0)
+            {
+                foreach (var item in list)
+                {
+                    CategoryTreeJson(item, item.Code);
+                    categoryList.Add(item);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 递归出子对象
+        /// </summary>
+        /// <param name="sbCategory"></param>
+        /// <param name="parentCode"></param>
+        private void CategoryTreeJson(Category sbCategory, string parentCode)
+        {
+            var list = CategoryCacheAllList.FindAll(p => p.ParentCode == parentCode);
+            if (list.Count > 0)
+            {
+                sbCategory.Children = new List<Category>();
+                foreach (var item in list)
+                {
+                    CategoryTreeJson(item, item.Code);
+                    sbCategory.Children.Add(item);
+                }
+            }
+        }
         public ActionResult Index()
         {
             return View(db.Categorys.ToList());
         }
+
+        // GET: /Category/
+        //public ActionResult Index()
+        //{
+        //    return View(db.Categorys.ToList());
+        //}
 
         // GET: /Category/Details/5
         public ActionResult Details(int? id)
