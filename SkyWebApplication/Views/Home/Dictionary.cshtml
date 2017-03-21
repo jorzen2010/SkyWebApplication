@@ -100,8 +100,11 @@
 
     $(function () {
         $.ajax({
-            type: "Post",
+            type: "get",
             url: "/Home/GetTreeJson",
+            data: {
+                id:0
+            },
             dataType: "json",
             success: function (result) {
                 $('#CategoryTreeview').treeview({
@@ -113,10 +116,15 @@
                     emptyIcon: '',    //没有子节点的节点图标
                     multiSelect: false,    //多选
                     onNodeChecked: function (event, data) {
-                        alert(data.nodeId);
+                       // alert(data.nodeId);
                     },
                     onNodeSelected: function (event, data) {
-                        alert(data.nodeId);
+                       // alert(data.nodeId);
+                    },
+                    onNodeCollapsed:function (event, node)
+                    {
+                     //   alert(data.nodeId);
+                    
                     }
                 });
             },

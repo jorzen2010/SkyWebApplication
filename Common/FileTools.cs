@@ -47,8 +47,6 @@ namespace Common
 
         public static Bitmap Base64StringToImage(string inputStr,string filePath)
         {
-
-
             byte[] arr = Convert.FromBase64String(inputStr);
             MemoryStream ms = new MemoryStream(arr);
             Bitmap bmp = new Bitmap(ms);
@@ -56,9 +54,7 @@ namespace Common
             bmp.Save(System.Web.HttpContext.Current.Server.MapPath(filePath), System.Drawing.Imaging.ImageFormat.Png);
             ms.Close();
             return bmp;
-
-            
-
+   
         }
 
         

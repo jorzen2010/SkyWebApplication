@@ -1727,7 +1727,7 @@
     <Content Include="Views\Home\Fileupload.cshtml" />
     <Content Include="Views\SysUser\Edit.cshtml" />
     <Content Include="Views\SysUser\Search.cshtml" />
-    <Content Include="Views\Home\Dictionary - 复制.cshtml" />
+    <Content Include="Views\Home\Dictionaryold.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
@@ -1738,6 +1738,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="plugins\flashavatar\upload\" />
     <Folder Include="Resource\Upload\" />
+    <Folder Include="Views\eee\" />
     <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
