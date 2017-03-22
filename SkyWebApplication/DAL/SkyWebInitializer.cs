@@ -99,12 +99,13 @@ namespace SkyWebApplication.DAL
 
             var categorys = new List<Category>
             {
-                new Category{CategoryName="文章类型",CategoryInfo="文章类型说明",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="学历",CategoryInfo="文章类型说明",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="通知公告",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="新闻资讯",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="博士",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="硕士",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0}
+                new Category{CategoryName="根节点",CategoryInfo="根节点",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="文章类型",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="学历",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="通知公告",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="新闻资讯",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="博士",CategoryInfo="文章类型说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="硕士",CategoryInfo="文章类型说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0}
 
             };
             categorys.ForEach(s => context.Categorys.Add(s));

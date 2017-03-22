@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SkyWebApplication.Models;
 using SkyWebApplication.DAL;
+using Common;
 
 namespace SkyWebApplication.Controllers
 {
@@ -15,7 +16,43 @@ namespace SkyWebApplication.Controllers
     {
         private SkyWebContext db = new SkyWebContext();
 
-        public List<Category> GetAllcategorys()
+       
+        public ActionResult Index()
+        {
+            return View(db.Categorys.ToList());
+        }
+
+        public JsonResult Test()
+        {
+           // List<Category> Categorylist = GetAllCategorys();
+
+            Category root = db.Categorys.Find(1);
+            LoopToAppendChildren(root);
+            return Json(root.ChildCategory, JsonRequestBehavior.AllowGet);
+        }
+        public void LoopToAppendChildren(Category curItem)
+        {
+            var subItems = GetCategorys(curItem.ID);
+            curItem.ChildCategory = new List<Category>();
+            curItem.ChildCategory.AddRange(subItems);
+            foreach (var subItem in subItems)
+            {
+                LoopToAppendChildren(subItem);
+            }
+        }
+
+        public List<Category> GetCategorys(int ParentID)
+        {
+            var categorys = from s in db.Categorys
+                            orderby s.ID descending
+                            where s.CategoryParentID == ParentID
+                            select s;
+
+            return categorys.ToList();
+
+        }
+
+        public List<Category> GetAllCategorys()
         {
             var categorys = from s in db.Categorys
                             orderby s.ID descending
@@ -24,72 +61,6 @@ namespace SkyWebApplication.Controllers
             return categorys.ToList();
 
         }
-
-
-        private List<Category> CategoryCacheAllList { get; set; }
-
-        [Route("")]
-        public HttpResponseMessage Get()
-        {
-
-            var list =new List<Category> ();
-            if (list == null)
-            {
-                CategoryCacheAllList = GetAllcategorys(); //取得数据库里面所有数据
-
-               // CategoryCacheAllList = CategoryService.GetCacheList(); //取得数据库里面所有数据
-                list = new List<Category>();
-                CategoryJson(list, "1");
-              //  CacheHelper<List<Category>>.SetCache(CategoryAllListCacheKEY, list);
-            }
-            //return Request.CreateResponse(HttpStatusCode.OK, list);
-            //下面的代码这个没试
-            string json = JsonConvert.SerializeObject(categoryList, Formatting.Indented);
-            return json; 
-        }
-
-
-        /// <summary>
-        /// 取得兄弟节点
-        /// </summary>
-        /// <param name="categoryList"></param>
-        /// <param name="parentCode"></param>
-        public void CategoryJson(List<Category> categoryList, string parentCode)
-        {
-            var list = CategoryCacheAllList.FindAll(p => p.ParentCode == parentCode);
-            if (list.Count > 0)
-            {
-                foreach (var item in list)
-                {
-                    CategoryTreeJson(item, item.Code);
-                    categoryList.Add(item);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 递归出子对象
-        /// </summary>
-        /// <param name="sbCategory"></param>
-        /// <param name="parentCode"></param>
-        private void CategoryTreeJson(Category sbCategory, string parentCode)
-        {
-            var list = CategoryCacheAllList.FindAll(p => p.ParentCode == parentCode);
-            if (list.Count > 0)
-            {
-                sbCategory.Children = new List<Category>();
-                foreach (var item in list)
-                {
-                    CategoryTreeJson(item, item.Code);
-                    sbCategory.Children.Add(item);
-                }
-            }
-        }
-        public ActionResult Index()
-        {
-            return View(db.Categorys.ToList());
-        }
-
         // GET: /Category/
         //public ActionResult Index()
         //{

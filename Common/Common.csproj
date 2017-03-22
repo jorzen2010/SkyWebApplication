@@ -54,6 +54,7 @@
     <Compile Include="CommonValidate.cs" />
     <Compile Include="DataConvertHelper.cs" />
     <Compile Include="DateTools.cs" />
+    <Compile Include="DiguiMenu.cs" />
     <Compile Include="EmailServices.cs" />
     <Compile Include="FileServices.cs" />
     <Compile Include="FileTools.cs" />

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SkyWebApplication.Models;
 using SkyWebApplication.DAL;
+using Common;
 
 namespace SkyWebApplication.Controllers
 {
@@ -16,6 +17,8 @@ namespace SkyWebApplication.Controllers
         {
             return View();
         }
+
+
 
         public ActionResult About()
         {
@@ -215,6 +218,29 @@ namespace SkyWebApplication.Controllers
             return categorys.ToList();
 
         }
+        public void LoopToAppendChildren(List<Category> all, Category curItem)
+        {
+           // var subItems = all.Where(ee => ee.ParentId == curItem.Id).ToList();
+            var subItems = Getcategorys(curItem.ID);
+            curItem.ChildCategory = new List<Category>();
+            curItem.ChildCategory.AddRange(subItems);
+            foreach (var subItem in subItems)
+            {
+                LoopToAppendChildren(all, subItem);//新闻1.1
+            }
+        }
+        public ContentResult testjson()
+        {
+           // List<Category> categorys
+            var categorys = from s in db.Categorys
+                            orderby s.ID descending
+                            select s;
+          //  JsonHelper.ListToJson(categorys.ToList());
+           // return Content(categorys.ToList(), JsonRequestBehavior.AllowGet);
+
+           return Content(JsonHelper.ListToJson(categorys.ToList()));
+
+        }
 
         //public List<Node> Getcategorys(int? id)
         //{
@@ -265,4 +291,17 @@ namespace SkyWebApplication.Controllers
         public string text;   //节点名称
         public List<Node> nodes;    //子节点，可以用递归的方法读取，方法在下一章会总结
     }
+
+    public class NewsType
+    {
+        public int Id;
+        public int ParentId;
+        public string Name;
+        public List<NewsType> children;
+
+       
+    
+    }
+
+
 }
