@@ -12,7 +12,7 @@ using Common;
 
 namespace SkyWebApplication.Controllers
 {
-
+    //这是一个用于bootstraptreeview的node类
     public class bvnode
     {
         public string text;
@@ -31,25 +31,8 @@ namespace SkyWebApplication.Controllers
             return View(db.Categorys.ToList());
         }
 
-        //public JsonResult Test()
-        //{
-        //   // List<Category> Categorylist = GetAllCategorys();
 
-        //    Category root = db.Categorys.Find(1);
-        //    LoopToAppendChildren(root);
-        //    return Json(root.ChildCategory, JsonRequestBehavior.AllowGet);
-        //}
-        //public void LoopToAppendChildren(Category curItem)
-        //{
-        //    var subItems = GetCategorys(curItem.ID);
-        //    curItem.ChildCategory = new List<Category>();
-        //    curItem.ChildCategory.AddRange(subItems);
-        //    foreach (var subItem in subItems)
-        //    {
-        //        LoopToAppendChildren(subItem);
-        //    }
-        //}
-
+        //获取一个Category
         public JsonResult GetOneCategory(int? id)
         {
             if (id == null)
@@ -66,10 +49,9 @@ namespace SkyWebApplication.Controllers
             return Json(category, JsonRequestBehavior.AllowGet);
             
         }
-
-        public JsonResult Test()
+        //构建一个CategoryList的json
+        public JsonResult TreeJson()
         {
-            // List<Category> Categorylist = GetAllCategorys();
 
             Category root = db.Categorys.Find(1);
             bvnode rootnode = new bvnode();
@@ -79,6 +61,7 @@ namespace SkyWebApplication.Controllers
             LoopToAppendChildren(rootnode);
             return Json(rootnode.nodes, JsonRequestBehavior.AllowGet);
         }
+        //递归出所有字典数据
         public void LoopToAppendChildren(bvnode rootnode)
         {
             var subItems = Getnodes(rootnode.id);
@@ -116,32 +99,8 @@ namespace SkyWebApplication.Controllers
 
         }
 
-        public List<Category> GetCategorys(int ParentID)
-        {
-            var categorys = from s in db.Categorys
-                            orderby s.ID descending
-                            where s.CategoryParentID == ParentID
-                            select s;
-
-            return categorys.ToList();
-
-        }
-
-        public List<Category> GetAllCategorys()
-        {
-            var categorys = from s in db.Categorys
-                            orderby s.ID descending
-                            select s;
-
-            return categorys.ToList();
-
-        }
-        // GET: /Category/
-        //public ActionResult Index()
-        //{
-        //    return View(db.Categorys.ToList());
-        //}
-
+      
+     
         // GET: /Category/Details/5
         public ActionResult Details(int? id)
         {

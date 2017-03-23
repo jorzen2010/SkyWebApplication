@@ -31,7 +31,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-9">
-                    <form class="form-horizontal" id="Category" action="">
+                    <form class="form-horizontal" id="Category">
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <div class="btn-group">
@@ -94,8 +94,8 @@
                             </div>
                             <div class="box-footer">
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> 返回</button>
-                                    <button type="button" class="btn btn-primary"><span class="fa  fa-save"></span> 保存</button>
+                                    <button type="button" class="btn btn-default" id="btnback"><i class="fa fa-reply"></i> 返回</button>
+                                    <button type="submit" class="btn btn-primary" id="btnsave"><span class="fa  fa-save"></span> 保存</button>
                                 </div>
                             </div>
 
@@ -114,11 +114,19 @@
 <script type="text/javascript" src="/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
 <script type="text/javascript">
 
+    //初始化页面
+
+    //加载树形菜单
+    LoadTreeDictionary();
     //加载icheck的样式，初始化加载一次，每一次刷新都需要加载一次，所以封装一个方法。
     icheckcss("CategoryStatus");
-    function icheckcss(name)
-    {
-        $('[name='+name+']').iCheck({
+
+
+   //以下部分可以封装为一个文件
+
+    //加载icheck的样式，初始化加载一次，每一次刷新都需要加载一次，所以封装一个方法。
+    function icheckcss(name) {
+        $('[name=' + name + ']').iCheck({
             labelHover: false,
             cursor: true,
             checkboxClass: 'icheckbox_square-green',
@@ -128,14 +136,10 @@
 
     }
 
-
-    // onclick = "CategoryBtn(this)"
-
-
-    function categoryaction(btn,ac)
-    { 
-        $('[name="CategoryBtn"]').removeClass("btn-primary")
-        $(btn).addClass("btn-primary");
+    //curd查按钮操作
+    function categoryaction(btn, ac) {
+        $('[name="CategoryBtn"]').removeClass("btn-primary").addClass("btn-default");
+        $(btn).removeClass("btn-default").addClass("btn-primary");
         //$('#Category input').removeAttr("disabled");
         //$('#Category textarea').removeAttr("disabled");
         icheckcss("CategoryStatus");
@@ -143,97 +147,129 @@
         var thisCategoryName = $('#thisCategoryName').val();
         var thisID = $('#thisID').val();
 
-        if (ac == 'addtop')
-        {
+        if (ac == 'addtop') {
             $('#CategoryParentName').val('根节点');;
             $('#CategoryParentID').val(0);
             $('#CategoryName').val('').removeAttr("disabled");
             $('#CategorySort').val('').removeAttr("disabled");
             $('#CategoryInfo').val('').removeAttr("disabled");
-            $('input[type="radio"][name="CategoryStatus"][value="true"]').removeAttr("disabled");
-            icheckcss("CategoryStatus");
-        }
-        if (ac == 'addnext')
-        {
-
-            $('#CategoryParentName').val(thisCategoryName);;
-            $('#CategoryParentID').val(thisID);
-            $('#CategoryName').val('').removeAttr("disabled");
-            $('#CategorySort').val('').removeAttr("disabled");
-            $('#CategoryInfo').val('').removeAttr("disabled");
-            $('input[type="radio"][name="CategoryStatus"][value="true"]').removeAttr("disabled");
+            $('input[type="radio"][name="CategoryStatus"]').removeAttr("disabled");
             icheckcss("CategoryStatus");
 
+        }
+        if (ac == 'addnext') {
+            if (thisID == 0)
+            { alert('你尚未没有选择节点！'); }
+            else
+            {
+                $('#CategoryParentName').val(thisCategoryName);;
+                $('#CategoryParentID').val(thisID);
+                $('#CategoryName').val('').removeAttr("disabled");
+                $('#CategorySort').val('').removeAttr("disabled");
+                $('#CategoryInfo').val('').removeAttr("disabled");
+                $('input[type="radio"][name="CategoryStatus"]').removeAttr("disabled");
+                icheckcss("CategoryStatus");
+            }
+
+
 
         }
-        if (ac == 'edit')
-        {
+        if (ac == 'edit') {
             //需要重新获取这个栏目
+            if (thisID == 0)
+            { alert('你尚未没有选择节点！'); }
+            else
+            {
+                $.ajax({
+                    type: "get",
+                    url: "/Category/GetOneCategory",
+                    data: {
+                        id: thisID
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        // $('#thisCategoryName').val(result.CategoryName).prop("disabled", true);
+                        //  $('#thisID').val(result.ID).prop("disabled", true);
+                        $('#CategoryParentName').val(result.CategoryParentName).prop("disabled", true);
+                        $('#CategoryParentID').val(result.CategoryParentID).prop("disabled", true);
+                        $('#CategoryName').val(result.CategoryName).removeAttr("disabled");
+                        $('#ID').val(result.ID).removeAttr("disabled");
+                        $('#CategorySort').val(result.CategorySort).removeAttr("disabled");
+                        $('#CategoryInfo').val(result.CategoryInfo).removeAttr("disabled");
+                        $('input[type="radio"][name="CategoryStatus"][value=' + result.CategoryStatus.toString() + ']').prop("checked", "checked");
+                        $('[name="CategoryStatus"]').removeAttr("disabled");
+                        icheckcss("CategoryStatus");
+                    },
+                    error: function () {
+                        alert("树形结构加载失败！")
+                    }
+                });
+            }
 
-            $('#CategoryParentName').val(CategoryParentName);;
-            $('#CategoryParentID').val(CategoryParentID);
-            $('#CategoryName').val('').removeAttr("disabled");
-            $('#CategorySort').val('').removeAttr("disabled");
-            $('#CategoryInfo').val('').removeAttr("disabled");
-            $('input[type="radio"][name="CategoryStatus"][value="true"]').removeAttr("disabled");
-            icheckcss("CategoryStatus");
+
         }
-        if (ac == 'delete')
-        {
+        if (ac == 'delete') {
             //弹出确认对话框即可
+            if (thisID == 0)
+            { alert('你尚未没有选择节点！'); }
+            else
+            {
+                alert('你确定要删除这个节点吗！' + thisCategoryName);
+            }
 
         }
 
-    
+
     }
 
-    //$('#AddTopCategory').on("click", function () {
-       
-
-
-    //});
-
-
-
-    //$('#AddTopCategory').on("click", function () {
-    //    $('[name="CategoryBtn"]').removeClass("btn-primary")
-    //    $(this).addClass("btn-primary");
-    //    $('#Category input').removeAttr("disabled");
-    //    $('#Category textarea').removeAttr("disabled");
-    //    icheckcss("CategoryStatus");
-
-
-    //});
-    //$('#AddNextCategory').on("click", function () {
-    //    $('[name="CategoryBtn"]').removeClass("btn-primary")
-    //    $(this).addClass("btn-primary");
-    //    $('#Category input').removeAttr("disabled");
-    //    $('#Category textarea').removeAttr("disabled");
-    //    icheckcss("CategoryStatus");
-
-    //});
-    //$('#EditCategory').on("click", function () {
-    //    $('[name="CategoryBtn"]').removeClass("btn-primary")
-    //    $(this).addClass("btn-primary");
-    //    $('#Category input').removeAttr("disabled");
-    //    $('#Category textarea').removeAttr("disabled");
-    //    icheckcss("CategoryStatus");
-    //});
-    //$('#DeleteCategory').on("click", function () {
-    //    $('[name="CategoryBtn"]').removeClass("btn-primary")
-    //    $(this).addClass("btn-primary");
-    //    $('#Category input').removeAttr("disabled");
-    //    $('#Category textarea').removeAttr("disabled");
-    //    icheckcss("CategoryStatus");
-    //});
-
-
-
-
-   
-   //右侧加载选中项目
-    function dictionary(nodeid)
+    //加载树形菜单
+    function LoadTreeDictionary()
     {
+            $.ajax({
+                type: "get",
+                url: "/category/TreeJson",
+                data: {
+                    id:0
+                },
+                dataType: "json",
+                success: function (result) {
+                    $('#CategoryTreeview').treeview({
+                        levels: 1,
+                        data: result,
+                        multiSelect: $('#chk-select-multi').is(':checked'),
+                        onNodeSelected: function (event, node) {
+
+                            $('[name="CategoryBtn"]').removeClass("btn-primary")
+                            dictionary(node.id);
+                          //  $('#DictionaryName').val(node.text);
+                            //  $('#selectable-output').prepend('<p>' + node.text + node.tags + ' was selected</p>');
+                           // alert('选中');
+                        },
+                        onNodeUnselected: function (event, node) {
+                            //$('#selectable-output').prepend('<p>' + node.text + node.tags + ' was unselected</p>');
+                            //  alert('不选');
+                            $('#thisID').val('0');
+
+                        },
+                        onNodeCollapsed: function (event, node) {
+                           // alert('关闭字段');
+
+                        },
+                        onNodeExpanded: function (event, node) {
+                           // alert('展开字段');
+
+                        }
+                    });
+                },
+                error: function () {
+                    alert("树形结构加载失败！")
+                }
+            });
+
+    }
+
+    //右侧加载选中项目
+    function dictionary(nodeid) {
         $('[name="CategoryStatus"]').removeAttr("checked");
         $.ajax({
             type: "get",
@@ -243,7 +279,7 @@
             },
             dataType: "json",
             success: function (result) {
-             
+
                 $('#CategoryParentName').val(result.CategoryParentName).prop("disabled", true);
                 $('#CategoryParentID').val(result.CategoryParentID).prop("disabled", true);
                 $('#CategoryName').val(result.CategoryName).prop("disabled", true);
@@ -254,7 +290,7 @@
                 $('#CategoryInfo').val(result.CategoryInfo).prop("disabled", true);
                 $('input[type="radio"][name="CategoryStatus"][value=' + result.CategoryStatus.toString() + ']').prop("checked", "checked");
                 $('[name="CategoryStatus"]').prop("disabled", true);
-                icheckcss("CategoryStatus");     
+                icheckcss("CategoryStatus");
             },
             error: function () {
                 alert("树形结构加载失败！")
@@ -262,46 +298,7 @@
         });
 
     }
-    //加载树形菜单
-    $(function () {
-        $.ajax({
-            type: "get",
-            url: "/category/test",
-            data: {
-                id:0
-            },
-            dataType: "json",
-            success: function (result) {
-                $('#CategoryTreeview').treeview({
-                    levels: 1,
-                    data: result,
-                    multiSelect: $('#chk-select-multi').is(':checked'),
-                    onNodeSelected: function (event, node) {
-                        
-                        $('[name="CategoryBtn"]').removeClass("btn-primary")
-                        dictionary(node.id);
-                      //  $('#DictionaryName').val(node.text);
-                        //  $('#selectable-output').prepend('<p>' + node.text + node.tags + ' was selected</p>');
-                       // alert('选中');
-                    },
-                    onNodeUnselected: function (event, node) {
-                        //$('#selectable-output').prepend('<p>' + node.text + node.tags + ' was unselected</p>');
-                      //  alert('不选');
-                    },
-                    onNodeCollapsed: function (event, node) {
-                       // alert('关闭字段');
 
-                    },
-                    onNodeExpanded: function (event, node) {
-                       // alert('展开字段');
-
-                    }
-                });
-            },
-            error: function () {
-                alert("树形结构加载失败！")
-            }
-        });
-    })
+   
 </script>
     }
