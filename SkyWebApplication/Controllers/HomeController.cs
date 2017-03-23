@@ -69,125 +69,8 @@ namespace SkyWebApplication.Controllers
 
             return View();
         }
-        ///// <summary>
-        ///// 返回Json格式数据
-        ///// </summary>
-        ///// <returns></returns>
-        //[HttpPost]
-        //public JsonResult GetTreeJson(int id)
-        //{
-        //    //var nodeA = new List<Node>();
-        //    //nodeA.Add(new Node(4, "A01", null));
-        //    //nodeA.Add(new Node(5, "A02", null));
-        //    //nodeA.Add(new Node(6, "A03", null));
-
-        //    //var nodeB = new List<Node>();
-        //    //nodeB.Add(new Node(7, "B07", null));
-        //    //nodeB.Add(new Node(8, "B08", null));
-        //    //nodeB.Add(new Node(9, "B09", null));
-
-        //    //var nodes = new List<Node>();
-        //    //nodes.Add(new Node(1, "A01", nodeA));
-        //    //nodes.Add(new Node(2, "B02", nodeB));
-        //    //nodes.Add(new Node(3, "A03", null));
-
-        //    var nodes = new List<Node>();
-
-
-        //    List<Node> categorys = Getcategorys(0);
-
-        //    for (int i = 0; i < categorys.Count; i++)
-        //    {
-
-        //        nodes.Add(new Node(categorys[i].nodeId, categorys[i].text, Getcategorys(categorys[i].nodeId)));
-
-        //       // nodes.Add(new Node(categorys[i].ID, categorys[i].CategoryName, List < Node > node));
-        //    }
-
-        //    return Json(nodes, JsonRequestBehavior.AllowGet);
-        //}
-
-        //public JsonResult AddTree(int ParentID, Node pNode)
-        //{
-
-        //    List<Category> categorys = Getcategorys(ParentID);
-
-        //    if (categorys.Count == 0)
-        //    {
-                
-        //        return Json(pNode, JsonRequestBehavior.AllowGet);
-        //    }
-        //    else
-        //    {
-        //        foreach (Category category in categorys)
-        //        {
-        //            //声明节点
-        //            Node node = new Node();
-
-        //            //开始递归
-        //            if (ParentID == 0)
-        //            {
-        //                node.nodeId = category.ID;
-        //                node.text = category.CategoryName;
-        //                node.nodes =
-
-        //             //  node.Add(node);
-
-        //                AddTree(category.ID, node);    //再次递归
-        //            }
-        //            else
-        //            {
-        //                node.nodeId = category.ID;
-        //                node.text = category.CategoryName;
-
-        //                pNode.nodes.Add(node);
-
-        //                AddTree(category.ID, node);    //再次递归
-        //            }
-        //        }
-
-        //    }
-
-        //    return Json(categorysNode, JsonRequestBehavior.AllowGet);
-        //}
-        
-        public JsonResult GetTreeJson()
-        {
-            List<Node> categorysNodes = new List<Node>();
-            List<Category> data = Getcategorys(0);
-            foreach (var tree in data)
-            {
-                List<Category> ChildCategoryList = Getcategorys(tree.ID);
-                List<Node> ChildCategorysNodes = new List<Node>();
-                if (ChildCategoryList.Count > 0)
-                {
-                    foreach (var childTree in ChildCategoryList)
-                    {
-                       // ChildCategorysNodes.Add(new Node(ChildCategoryList[i].ID,ChildCategoryList[i].ID,null));
-                        categorysNodes.Add(new Node(tree.CategoryParentID, tree.CategoryName, ChildCategorysNodes));
-                    
-                    }
-                
-                }
-            }
-            return Json(categorysNodes, JsonRequestBehavior.AllowGet);
-        }
-
-        public void AddChildNode(int id)
-        {
-            List<Node> cNodes = new List<Node>();
-            List<Category> data = Getcategorys(id);
-            if (data.Count > 0)
-            { 
-                foreach (var tree in data)
-            {
-                Console.WriteLine(tree.CategoryName);
-                AddChildNode(tree.ID);
-            }
-            
-            }
-           
-        }
+       
+     
 
         [HttpPost]
         public JsonResult GetTreeJsond(int id)
@@ -231,42 +114,14 @@ namespace SkyWebApplication.Controllers
         }
         public ContentResult testjson()
         {
-           // List<Category> categorys
             var categorys = from s in db.Categorys
                             orderby s.ID descending
                             select s;
-          //  JsonHelper.ListToJson(categorys.ToList());
-           // return Content(categorys.ToList(), JsonRequestBehavior.AllowGet);
-
            return Content(JsonHelper.ListToJson(categorys.ToList()));
 
         }
 
-        //public List<Node> Getcategorys(int? id)
-        //{
-        //    int parentid = id ??0;
-        //    var categorys = from s in db.Categorys
-        //                    orderby s.ID descending
-        //                    where s.CategoryParentID == parentid
-        //                    select s;
-        //    var nodes = new List<Node>();
-        //    if (categorys.Count() == 0)
-        //    {
-
-        //    }
-        //    else
-        //    { 
-        //     for (int i = 0; i < categorys.Count(); i++)
-        //    {
-
-        //        nodes.Add(new Node(categorys.ToList()[i].CategoryParentID, categorys.ToList()[i].CategoryName, Getcategorys(categorys.ToList()[i].CategoryParentID)));
-        //    }
-        //    }
-
-
-        //    return nodes;
-
-        //}
+      
         public ActionResult Dictionary()
         {
             ViewBag.Message = "Your contact page.";

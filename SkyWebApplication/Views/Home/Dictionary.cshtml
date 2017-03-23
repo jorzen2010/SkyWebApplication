@@ -1,6 +1,10 @@
 ﻿@{
     ViewBag.Title = "Video";
 }
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+}
 
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -27,67 +31,77 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-9">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> 新增顶级字典</button>
-                                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> 新增下级字典</button>
-                                <button type="button" class="btn btn-default"><i class="fa fa-edit"></i> 编辑当前字典</button>
-                                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> 删除当前字典</button>
+                    <form class="form-horizontal" id="Category" action="">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" id="AddTopCategory" name="CategoryBtn" onclick="categoryaction(this,'addtop')"> <i class="fa fa-plus"></i> 新增顶级字典</button>
+                                    <button type="button" class="btn btn-default" id="AddNextCategory" name="CategoryBtn" onclick="categoryaction(this, 'addnext')"> <i class=" fa fa-plus"></i> 新增下级字典</button>
+                                    <button type="button" class="btn btn-default" id="EditCategory" name="CategoryBtn" onclick="categoryaction(this, 'edit')"> <i class=" fa fa-edit"></i> 编辑当前字典</button>
+                                    <button type="button" class="btn btn-default" id="DeleteCategory" name="CategoryBtn" onclick="categoryaction(this, 'delete')"> <i class=" fa fa-plus"></i> 删除当前字典</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="box-body">
-                            <form class="form-horizontal">
+                            <div class="box-body">
+
                                 <div class="box-body">
                                     <div class="form-group">
+
+                                        <input type="hidden" class="form-control" id="thisID" name="thisID" placeholder="名称">
+                                        <input type="hidden" class="form-control" id="thisCategoryName" name="thisCategoryName" placeholder="名称">
+
+
                                         <label for="inputEmail3" class="col-sm-2 control-label">上级字典</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail3" placeholder="上级字典">
+                                            <input type="hidden" class="form-control" id="CategoryParentID" name="CategoryParentID" placeholder="上级字典">
+
+                                            <input type="text" class="form-control" id="CategoryParentName" name="CategoryParentName" placeholder="上级字典">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-2 control-label">名称</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="DictionaryName" placeholder="名称">
+                                            <input type="hidden" class="form-control" id="ID" name="ID" placeholder="名称">
+                                            <input type="text" class="form-control" id="CategoryName" name="CategoryName" placeholder="名称">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-2 control-label">排序</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="排序">
+                                            <input type="text" class="form-control" id="CategorySort" placeholder="排序">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-2 control-label">是否可用</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3" placeholder="排序">
+                                            <input type="radio" name="CategoryStatus" value="true">  启用
+                                            <input type="radio" name="CategoryStatus" value="false"> 禁用
                                         </div>
                                     </div>
-                                  
+
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-2 control-label">说明</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" rows="3" placeholder="说明 ..."></textarea>
+                                            <textarea class="form-control" rows="3" id="CategoryInfo" placeholder="说明 ..."></textarea>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <!-- /.box-body -->
-                            </form>
-                            <div id="selectable-output"></div>
-                        </div>
-                        <div class="box-footer">
-                            <div class="text-center">
-                                <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> 返回</button>
-                                <button type="button" class="btn btn-primary"><span class="fa  fa-save"></span> 保存</button>
+
                             </div>
+                            <div class="box-footer">
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> 返回</button>
+                                    <button type="button" class="btn btn-primary"><span class="fa  fa-save"></span> 保存</button>
+                                </div>
+                            </div>
+
+
                         </div>
-
-
-                    </div>
+                    </form>
                     <!-- /.box -->
                 </div>
             </div>
@@ -96,35 +110,191 @@
         <!-- /.content -->
 @section FootScripts {
 <script src="/plugins/bootstrap-treeview.js"></script>
+<script type="text/javascript" src="/plugins/iCheck/icheck.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
 <script type="text/javascript">
 
+    //加载icheck的样式，初始化加载一次，每一次刷新都需要加载一次，所以封装一个方法。
+    icheckcss("CategoryStatus");
+    function icheckcss(name)
+    {
+        $('[name='+name+']').iCheck({
+            labelHover: false,
+            cursor: true,
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+            increaseArea: '20%'
+        });
+
+    }
+
+
+    // onclick = "CategoryBtn(this)"
+
+
+    function categoryaction(btn,ac)
+    { 
+        $('[name="CategoryBtn"]').removeClass("btn-primary")
+        $(btn).addClass("btn-primary");
+        //$('#Category input').removeAttr("disabled");
+        //$('#Category textarea').removeAttr("disabled");
+        icheckcss("CategoryStatus");
+
+        var thisCategoryName = $('#thisCategoryName').val();
+        var thisID = $('#thisID').val();
+
+        if (ac == 'addtop')
+        {
+            $('#CategoryParentName').val('根节点');;
+            $('#CategoryParentID').val(0);
+            $('#CategoryName').val('').removeAttr("disabled");
+            $('#CategorySort').val('').removeAttr("disabled");
+            $('#CategoryInfo').val('').removeAttr("disabled");
+            $('input[type="radio"][name="CategoryStatus"][value="true"]').removeAttr("disabled");
+            icheckcss("CategoryStatus");
+        }
+        if (ac == 'addnext')
+        {
+
+            $('#CategoryParentName').val(thisCategoryName);;
+            $('#CategoryParentID').val(thisID);
+            $('#CategoryName').val('').removeAttr("disabled");
+            $('#CategorySort').val('').removeAttr("disabled");
+            $('#CategoryInfo').val('').removeAttr("disabled");
+            $('input[type="radio"][name="CategoryStatus"][value="true"]').removeAttr("disabled");
+            icheckcss("CategoryStatus");
+
+
+        }
+        if (ac == 'edit')
+        {
+            //需要重新获取这个栏目
+
+            $('#CategoryParentName').val(CategoryParentName);;
+            $('#CategoryParentID').val(CategoryParentID);
+            $('#CategoryName').val('').removeAttr("disabled");
+            $('#CategorySort').val('').removeAttr("disabled");
+            $('#CategoryInfo').val('').removeAttr("disabled");
+            $('input[type="radio"][name="CategoryStatus"][value="true"]').removeAttr("disabled");
+            icheckcss("CategoryStatus");
+        }
+        if (ac == 'delete')
+        {
+            //弹出确认对话框即可
+
+        }
+
+    
+    }
+
+    //$('#AddTopCategory').on("click", function () {
+       
+
+
+    //});
+
+
+
+    //$('#AddTopCategory').on("click", function () {
+    //    $('[name="CategoryBtn"]').removeClass("btn-primary")
+    //    $(this).addClass("btn-primary");
+    //    $('#Category input').removeAttr("disabled");
+    //    $('#Category textarea').removeAttr("disabled");
+    //    icheckcss("CategoryStatus");
+
+
+    //});
+    //$('#AddNextCategory').on("click", function () {
+    //    $('[name="CategoryBtn"]').removeClass("btn-primary")
+    //    $(this).addClass("btn-primary");
+    //    $('#Category input').removeAttr("disabled");
+    //    $('#Category textarea').removeAttr("disabled");
+    //    icheckcss("CategoryStatus");
+
+    //});
+    //$('#EditCategory').on("click", function () {
+    //    $('[name="CategoryBtn"]').removeClass("btn-primary")
+    //    $(this).addClass("btn-primary");
+    //    $('#Category input').removeAttr("disabled");
+    //    $('#Category textarea').removeAttr("disabled");
+    //    icheckcss("CategoryStatus");
+    //});
+    //$('#DeleteCategory').on("click", function () {
+    //    $('[name="CategoryBtn"]').removeClass("btn-primary")
+    //    $(this).addClass("btn-primary");
+    //    $('#Category input').removeAttr("disabled");
+    //    $('#Category textarea').removeAttr("disabled");
+    //    icheckcss("CategoryStatus");
+    //});
+
+
+
+
+   
+   //右侧加载选中项目
+    function dictionary(nodeid)
+    {
+        $('[name="CategoryStatus"]').removeAttr("checked");
+        $.ajax({
+            type: "get",
+            url: "/Category/GetOneCategory",
+            data: {
+                id: nodeid
+            },
+            dataType: "json",
+            success: function (result) {
+             
+                $('#CategoryParentName').val(result.CategoryParentName).prop("disabled", true);
+                $('#CategoryParentID').val(result.CategoryParentID).prop("disabled", true);
+                $('#CategoryName').val(result.CategoryName).prop("disabled", true);
+                $('#ID').val(result.ID).prop("disabled", true);
+                $('#thisCategoryName').val(result.CategoryName).prop("disabled", true);
+                $('#thisID').val(result.ID).prop("disabled", true);
+                $('#CategorySort').val(result.CategorySort).prop("disabled", true);
+                $('#CategoryInfo').val(result.CategoryInfo).prop("disabled", true);
+                $('input[type="radio"][name="CategoryStatus"][value=' + result.CategoryStatus.toString() + ']').prop("checked", "checked");
+                $('[name="CategoryStatus"]').prop("disabled", true);
+                icheckcss("CategoryStatus");     
+            },
+            error: function () {
+                alert("树形结构加载失败！")
+            }
+        });
+
+    }
+    //加载树形菜单
     $(function () {
         $.ajax({
             type: "get",
-            url: "/Home/GetTreeJson",
+            url: "/category/test",
             data: {
                 id:0
             },
             dataType: "json",
             success: function (result) {
                 $('#CategoryTreeview').treeview({
-                    data: result,         // 数据源
-                    showCheckbox: true,   //是否显示复选框
-                    highlightSelected: true,    //是否高亮选中
-                    //nodeIcon: 'glyphicon glyphicon-user',    //节点上的图标
-                    nodeIcon: 'glyphicon glyphicon-globe',
-                    emptyIcon: '',    //没有子节点的节点图标
-                    multiSelect: false,    //多选
-                    onNodeChecked: function (event, data) {
-                       // alert(data.nodeId);
+                    levels: 1,
+                    data: result,
+                    multiSelect: $('#chk-select-multi').is(':checked'),
+                    onNodeSelected: function (event, node) {
+                        
+                        $('[name="CategoryBtn"]').removeClass("btn-primary")
+                        dictionary(node.id);
+                      //  $('#DictionaryName').val(node.text);
+                        //  $('#selectable-output').prepend('<p>' + node.text + node.tags + ' was selected</p>');
+                       // alert('选中');
                     },
-                    onNodeSelected: function (event, data) {
-                       // alert(data.nodeId);
+                    onNodeUnselected: function (event, node) {
+                        //$('#selectable-output').prepend('<p>' + node.text + node.tags + ' was unselected</p>');
+                      //  alert('不选');
                     },
-                    onNodeCollapsed:function (event, node)
-                    {
-                     //   alert(data.nodeId);
-                    
+                    onNodeCollapsed: function (event, node) {
+                       // alert('关闭字段');
+
+                    },
+                    onNodeExpanded: function (event, node) {
+                       // alert('展开字段');
+
                     }
                 });
             },

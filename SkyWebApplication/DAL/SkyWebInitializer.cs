@@ -105,7 +105,9 @@ namespace SkyWebApplication.DAL
                 new Category{CategoryName="通知公告",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="新闻资讯",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="博士",CategoryInfo="文章类型说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="硕士",CategoryInfo="文章类型说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0}
+                new Category{CategoryName="硕士",CategoryInfo="文章类型说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                 new Category{CategoryName="通知",CategoryInfo="文章类型说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
+                  new Category{CategoryName="公告",CategoryInfo="文章类型说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0}
 
             };
             categorys.ForEach(s => context.Categorys.Add(s));
