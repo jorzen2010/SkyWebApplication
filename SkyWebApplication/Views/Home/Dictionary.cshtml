@@ -31,7 +31,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-9">
-                    <form class="form-horizontal" id="Category">
+                    <form class="form-horizontal" id="CategoryFrom" method="post">
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <div class="btn-group">
@@ -45,7 +45,7 @@
 
                                 <div class="box-body">
                                     <div class="form-group">
-
+                                        @Html.AntiForgeryToken()
                                         <input type="hidden" class="form-control" id="thisID" name="thisID" placeholder="名称">
                                         <input type="hidden" class="form-control" id="thisCategoryName" name="thisCategoryName" placeholder="名称">
 
@@ -121,7 +121,48 @@
     //加载icheck的样式，初始化加载一次，每一次刷新都需要加载一次，所以封装一个方法。
     icheckcss("CategoryStatus");
 
+    $('#btnsave').on("click", function (url) {
+        $.ajax({
+            type: "post",
+            url: "/category/TreeJson",
+            data: {
+                id: 0
+            },
+            dataType: "json",
+            success: function (result) {
+                $('#CategoryTreeview').treeview({
+                    levels: 1,
+                    data: result,
+                    multiSelect: $('#chk-select-multi').is(':checked'),
+                    onNodeSelected: function (event, node) {
 
+                        $('[name="CategoryBtn"]').removeClass("btn-primary")
+                        dictionary(node.id);
+                        //  $('#DictionaryName').val(node.text);
+                        //  $('#selectable-output').prepend('<p>' + node.text + node.tags + ' was selected</p>');
+                        // alert('选中');
+                    },
+                    onNodeUnselected: function (event, node) {
+                        //$('#selectable-output').prepend('<p>' + node.text + node.tags + ' was unselected</p>');
+                        //  alert('不选');
+                        $('#thisID').val('0');
+
+                    },
+                    onNodeCollapsed: function (event, node) {
+                        // alert('关闭字段');
+
+                    },
+                    onNodeExpanded: function (event, node) {
+                        // alert('展开字段');
+
+                    }
+                });
+            },
+            error: function () {
+                alert("树形结构加载失败！")
+            }
+        });
+    });
    //以下部分可以封装为一个文件
 
     //加载icheck的样式，初始化加载一次，每一次刷新都需要加载一次，所以封装一个方法。
@@ -149,11 +190,12 @@
 
         if (ac == 'addtop') {
             $('#CategoryParentName').val('根节点');;
-            $('#CategoryParentID').val(0);
+            $('#CategoryParentID').val(1);
             $('#CategoryName').val('').removeAttr("disabled");
             $('#CategorySort').val('').removeAttr("disabled");
             $('#CategoryInfo').val('').removeAttr("disabled");
             $('input[type="radio"][name="CategoryStatus"]').removeAttr("disabled");
+            $('#CategoryFrom').prop("action","/Category/Create")
             icheckcss("CategoryStatus");
 
         }
@@ -168,6 +210,7 @@
                 $('#CategorySort').val('').removeAttr("disabled");
                 $('#CategoryInfo').val('').removeAttr("disabled");
                 $('input[type="radio"][name="CategoryStatus"]').removeAttr("disabled");
+                $('#CategoryFrom').prop("action", "/Category/Create")
                 icheckcss("CategoryStatus");
             }
 
