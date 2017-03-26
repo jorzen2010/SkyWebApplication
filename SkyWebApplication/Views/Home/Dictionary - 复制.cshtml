@@ -92,7 +92,7 @@
                                 <!-- /.box-body -->
 
                             </div>
-                            <div class="box-footer" id="CategoryFromFooter" style="display:none">
+                            <div class="box-footer">
                                 <div class="text-center">
                                     <button type="button" class="btn btn-default" id="btnback"><i class="fa fa-reply"></i> 返回</button>
                                     <button type="submit" class="btn btn-primary" id="btnsave"><span class="fa  fa-save"></span> 保存</button>
@@ -116,7 +116,7 @@
 <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
 
 
-@*<script>
+<script>
     var form =null;
     $(function() {
         //初始化form表单
@@ -343,7 +343,7 @@
             $(".box-header button[data-btn-type='"+action+"']").removeClass("btn-default").addClass("btn-primary");
     }
 
-    </script>*@
+    </script>
     <script type="text/javascript">
 
         //初始化页面
@@ -368,30 +368,8 @@
 
     }
 
-    //设置form为只读
-    function formReadonly() {
-        //所有文本框只读
-        $("input[name],textarea[name],input[type='radio']").attr("readonly", "readonly");
-        //隐藏取消、保存按钮
-        $("#CategoryFrom .box-footer").hide();
-        //还原新增、编辑、删除按钮样式
-        $('[name="CategoryBtn"]').removeClass("btn-primary").addClass("btn-default");
-        //还原校验框
-        if ($("#CategoryFrom").data('bootstrapValidator'))
-            $("#CategoryFrom").data('bootstrapValidator').resetForm();
-    }
-        //设置form为可写
-    function formWritable(action) {
-        $("input[name],textarea[name]").removeAttr("readonly");
-        $("#CategoryFrom .box-footer").show();
-        $('[name="CategoryBtn"]').removeClass("btn-primary").addClass("btn-default");
-        if (action)
-            $(".box-header button[data-btn-type='" + action + "']").removeClass("btn-default").addClass("btn-primary");
-    }
-
     //curd查按钮操作
     function categoryaction(btn, ac) {
-
         $('[name="CategoryBtn"]').removeClass("btn-primary").addClass("btn-default");
         $(btn).removeClass("btn-default").addClass("btn-primary");
         //$('#Category input').removeAttr("disabled");
@@ -502,7 +480,6 @@
 
                         $('[name="CategoryBtn"]').removeClass("btn-primary")
                         dictionary(node.id);
-                        formReadonly();
                         //  $('#DictionaryName').val(node.text);
                         //  $('#selectable-output').prepend('<p>' + node.text + node.tags + ' was selected</p>');
                         // alert('选中');
@@ -542,27 +519,16 @@
             dataType: "json",
             success: function (result) {
 
-                //$('#CategoryParentName').val(result.CategoryParentName).prop("disabled", true);
-                //$('#CategoryParentID').val(result.CategoryParentID).prop("disabled", true);
-                //$('#CategoryName').val(result.CategoryName).prop("disabled", true);
-                //$('#ID').val(result.ID).prop("disabled", true);
-                //$('#thisCategoryName').val(result.CategoryName).prop("disabled", true);
-                //$('#thisID').val(result.ID).prop("disabled", true);
-                //$('#CategorySort').val(result.CategorySort).prop("disabled", true);
-                //$('#CategoryInfo').val(result.CategoryInfo).prop("disabled", true);
-                //$('input[type="radio"][name="CategoryStatus"][value=' + result.CategoryStatus.toString() + ']').prop("checked", "checked");
-                //$('[name="CategoryStatus"]').prop("disabled", true);
-                //icheckcss("CategoryStatus");
-
-                $('#CategoryParentName').val(result.CategoryParentName);
-                $('#CategoryParentID').val(result.CategoryParentID);
-                $('#CategoryName').val(result.CategoryName);
-                $('#ID').val(result.ID);
-                $('#thisCategoryName').val(result.CategoryName);
-                $('#thisID').val(result.ID);
-                $('#CategorySort').val(result.CategorySort);
-                $('#CategoryInfo').val(result.CategoryInfo);
-                $('input[type="radio"][name="CategoryStatus"][value=' + result.CategoryStatus.toString() + ']').prop("checked", "checked");;
+                $('#CategoryParentName').val(result.CategoryParentName).prop("disabled", true);
+                $('#CategoryParentID').val(result.CategoryParentID).prop("disabled", true);
+                $('#CategoryName').val(result.CategoryName).prop("disabled", true);
+                $('#ID').val(result.ID).prop("disabled", true);
+                $('#thisCategoryName').val(result.CategoryName).prop("disabled", true);
+                $('#thisID').val(result.ID).prop("disabled", true);
+                $('#CategorySort').val(result.CategorySort).prop("disabled", true);
+                $('#CategoryInfo').val(result.CategoryInfo).prop("disabled", true);
+                $('input[type="radio"][name="CategoryStatus"][value=' + result.CategoryStatus.toString() + ']').prop("checked", "checked");
+                $('[name="CategoryStatus"]').prop("disabled", true);
                 icheckcss("CategoryStatus");
             },
             error: function () {
@@ -573,39 +539,39 @@
     }
 
 
-    //$('#CategoryFrom').bootstrapValidator({
-    //    //        live: 'disabled',
-    //    message: 'This value is not valid',
-    //    feedbackIcons: {
-    //        valid: 'glyphicon glyphicon-ok',
-    //        invalid: 'glyphicon glyphicon-remove',
-    //        validating: 'glyphicon glyphicon-refresh'
-    //    },
-    //    fields: {
-    //        CategoryName: {
-    //            validators: {
-    //                notEmpty: {
-    //                    message: '名称不能为空'
-    //                }
-    //            }
-    //        },
-    //        CategorySort: {
-    //            validators: {
-    //                notEmpty: {
-    //                    message: '排序不能为空'
-    //                },
-    //                numeric: {message: '排序只能是数字'}
-    //            }
-    //        },
-    //        CategoryStatus: {
-    //            validators: {
-    //                notEmpty: {
-    //                    message: '状态不能为空'
-    //                }
-    //            }
-    //        }
-    //    }
-    //});
+    $('#CategoryFrom').bootstrapValidator({
+        //        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            CategoryName: {
+                validators: {
+                    notEmpty: {
+                        message: '名称不能为空'
+                    }
+                }
+            },
+            CategorySort: {
+                validators: {
+                    notEmpty: {
+                        message: '排序不能为空'
+                    },
+                    numeric: {message: '排序只能是数字'}
+                }
+            },
+            CategoryStatus: {
+                validators: {
+                    notEmpty: {
+                        message: '状态不能为空'
+                    }
+                }
+            }
+        }
+    });
 
 
 </script>
