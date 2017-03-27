@@ -1471,6 +1471,7 @@
     <Content Include="Resource\img\avatar.jpg" />
     <Content Include="Resource\img\loading.gif" />
     <Content Include="Resource\img\picture.jpg" />
+    <Content Include="Resource\js\Dictionary.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bootstrap\css\bootstrap-theme.css.map" />

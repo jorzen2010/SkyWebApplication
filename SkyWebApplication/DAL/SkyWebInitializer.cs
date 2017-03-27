@@ -99,15 +99,15 @@ namespace SkyWebApplication.DAL
 
             var categorys = new List<Category>
             {
-                new Category{CategoryName="根节点",CategoryInfo="根节点",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="系统字典",CategoryInfo="系统字典",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="文章类型",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="学历",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="通知公告",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="新闻资讯",CategoryInfo="文章类型说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="博士",CategoryInfo="文章类型说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="硕士",CategoryInfo="文章类型说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="通知",CategoryInfo="文章类型说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="公告",CategoryInfo="文章类型说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0}
+                new Category{CategoryName="学历",CategoryInfo="学历说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="通知公告",CategoryInfo="通知公告说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="新闻资讯",CategoryInfo="新闻资讯说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="博士",CategoryInfo="博士说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="硕士",CategoryInfo="硕士说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="通知",CategoryInfo="通知说明",CategoryParentID=4,CategoryStatus=false,CategorySort=0},
+                new Category{CategoryName="公告",CategoryInfo="公告说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0}
 
             };
             categorys.ForEach(s => context.Categorys.Add(s));
