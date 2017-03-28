@@ -46,13 +46,19 @@ namespace SkyWebApplication.DAL
             context.Settings.Add(new Setting
             {
                 SiteName = "SkyWeb",
+                DomainName = "http://www.zzd123.com",
                 Logo = "Upload/Site/logo.jpg",
                 Protocol = protocol.ToString(),
                 Title = "SkyWeb",
                 Keywords = "SkyWeb",
                 Description = "SkyWeb",
-                UploadUrl = "~/File/Upload/",
+
+                FileUploadUrl = "~/File/Upload/",
+                ImgUploadUrl = "~/File/Upload/",
+                EditorUploadUrl = "~/File/Upload/",
+                AvatarUploadUrl = "~/File/Upload/",
                 BaseUrl = "~",
+
                 Copyright = copyright.ToString(),
                 Statistics = string.Empty,
                 FailedPassword = 5,
@@ -61,7 +67,6 @@ namespace SkyWebApplication.DAL
                 LockedMinutes = 5,
                 EmailHost = "smtp.126.com",
                 EmailPort = 25,
-                UseCredential = true,
                 EmailFrom = "ccvixo@126.com",
                 EmailUser = "ccvixo",
                 EmailPassword = "1qaz2wsx",
@@ -100,14 +105,23 @@ namespace SkyWebApplication.DAL
             var categorys = new List<Category>
             {
                 new Category{CategoryName="系统字典",CategoryInfo="系统字典",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
+
                 new Category{CategoryName="文章类型",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="学历",CategoryInfo="学历说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="性别",CategoryInfo="性别说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+
                 new Category{CategoryName="通知公告",CategoryInfo="通知公告说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="新闻资讯",CategoryInfo="新闻资讯说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+
                 new Category{CategoryName="博士",CategoryInfo="博士说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="硕士",CategoryInfo="硕士说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="通知",CategoryInfo="通知说明",CategoryParentID=4,CategoryStatus=false,CategorySort=0},
-                new Category{CategoryName="公告",CategoryInfo="公告说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0}
+
+
+                new Category{CategoryName="男",CategoryInfo="通知说明",CategoryParentID=4,CategoryStatus=false,CategorySort=0},
+                new Category{CategoryName="女",CategoryInfo="公告说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
+
+                new Category{CategoryName="通知",CategoryInfo="通知说明",CategoryParentID=5,CategoryStatus=false,CategorySort=0},
+                new Category{CategoryName="公告",CategoryInfo="公告说明",CategoryParentID=5,CategoryStatus=true,CategorySort=0},
 
             };
             categorys.ForEach(s => context.Categorys.Add(s));

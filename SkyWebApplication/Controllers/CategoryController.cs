@@ -135,9 +135,9 @@ namespace SkyWebApplication.Controllers
                 db.Categorys.Add(category);
                 db.SaveChanges();
 
-                return RedirectToAction("Dictionary", "Home");
+                return RedirectToAction("Dictionary", "Home", new {option=category.CategoryName });
             }
-            return RedirectToAction("Dictionary", "Home");
+            return RedirectToAction("Dictionary", "Home", new { option = category.CategoryName });
         }
 
 
@@ -182,9 +182,9 @@ namespace SkyWebApplication.Controllers
             {
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Dictionary", "Home");
+                return RedirectToAction("Dictionary", "Home", new { option = category.CategoryName });
             }
-            return RedirectToAction("Dictionary", "Home");
+            return RedirectToAction("Dictionary", "Home", new { option = category.CategoryName });
         }
 
         // GET: /Category/Delete/5

@@ -2,13 +2,12 @@
 //初始化页面
 function init() {
     //加载树形菜单
-    LoadTreeDictionary(0);
-    //加载右侧内容
-    dictionary(2);
-    //右侧表单设置为只读
-    formReadonly();
+    var a = getUrlParam('option');
+
+    LoadTreeDictionary(0,a);
     //加载icheck的样式，初始化加载一次，每一次刷新都需要加载一次，所以封装一个方法。
     icheckcss("CategoryStatus");
+    //加载验证
     $('#CategoryFrom').bootstrapValidator({
         //        live: 'disabled',
         message: 'This value is not valid',
@@ -44,7 +43,7 @@ function init() {
         }
     });
 }
-//以下部分可以封装为一个文件
+
 //加载icheck的样式，初始化加载一次，每一次刷新都需要加载一次，所以封装一个方法。
 function icheckcss(name) {
     $('[name=' + name + ']').iCheck({
@@ -130,8 +129,6 @@ function categoryaction(btn, ac) {
     $(btn).removeClass("btn-default").addClass("btn-primary");
     var selectedArr = $("#CategoryTreeview").data("treeview").getSelected();
     var selectedNode = selectedArr.length > 0 ? selectedArr[0] : null;
-    //$('#Category input').removeAttr("disabled");
-    //$('#Category textarea').removeAttr("disabled");
     icheckcss("CategoryStatus");
 
     var thisCategoryName = $('#thisCategoryName').val();
@@ -189,7 +186,8 @@ function categoryaction(btn, ac) {
             else {
                 fillForm(selectedNode);
                 formReadonly();
-                delconfirm(selectedNode.id, "/Category/Delete/");
+                delconfirm(selectedNode.id, "/Category/Delete/", '/Home/Dictionary');
+                
             }
 
         }
@@ -200,7 +198,7 @@ function categoryaction(btn, ac) {
 }
 
 //加载树形菜单
-function LoadTreeDictionary(rootId) {
+function LoadTreeDictionary(rootId,a) {
     $.ajax({
         type: "get",
         url: "/category/TreeJson",
@@ -209,6 +207,7 @@ function LoadTreeDictionary(rootId) {
         },
         dataType: "json",
         success: function (result) {
+
             $('#CategoryTreeview').treeview({
                 levels: 1,
                 data: result,
@@ -225,24 +224,36 @@ function LoadTreeDictionary(rootId) {
                 onNodeUnselected: function (event, node) {
 
 
-
-
                 },
                 onNodeCollapsed: function (event, node) {
-
-
 
                 },
                 onNodeExpanded: function (event, node) {
 
-
                 }
             });
+            selectnode('CategoryTreeview',a);
         },
         error: function () {
             alert("树形结构加载失败！")
         }
     });
+
+}
+
+//默认选择项目
+function selectnode(id, option)
+{
+    var option = option || '文章类型';
+    //搜索到项目
+   // var selectnode = $("#" + id).data("treeview").search([option]);
+    var selectnode = $("#" + id).treeview('search', [option]);
+    //清空搜索结果
+    $("#"+id).treeview('clearSearch');
+    //选中
+    $("#" + id).data("treeview").selectNode(selectnode);
+    //展开
+    $("#"+id).data("treeview").expandNode(selectnode);
 
 }
 
@@ -262,15 +273,13 @@ function dictionary(nodeid) {
             $('#CategoryParentID').val(result.CategoryParentID);
             $('#CategoryName').val(result.CategoryName);
             $('#ID').val(result.ID);
-            $('#thisCategoryName').val(result.CategoryName);
-            $('#thisID').val(result.ID);
             $('#CategorySort').val(result.CategorySort);
             $('#CategoryInfo').val(result.CategoryInfo);
             $('input[type="radio"][name="CategoryStatus"][value=' + result.CategoryStatus.toString() + ']').prop("checked", "checked");;
             icheckcss("CategoryStatus");
         },
         error: function () {
-            alert("树形结构加载失败！")
+            alert("加载失败！")
         }
     });
 

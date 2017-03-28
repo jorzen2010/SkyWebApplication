@@ -177,6 +177,7 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysRoleController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -1728,14 +1729,21 @@
     <Content Include="Views\Home\Fileupload.cshtml" />
     <Content Include="Views\SysUser\Edit.cshtml" />
     <Content Include="Views\SysUser\Search.cshtml" />
-    <Content Include="Views\Home\Dictionaryold.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Index - 复制.cshtml" />
-    <Content Include="Views\Home\Dictionary - 复制.cshtml" />
+    <Content Include="Views\SysUser\List.cshtml" />
+    <Content Include="Views\Home\Setting.cshtml" />
+    <Content Include="Views\Setting\Create.cshtml" />
+    <Content Include="Views\Setting\Delete.cshtml" />
+    <Content Include="Views\Setting\Details.cshtml" />
+    <Content Include="Views\Setting\Edit.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="Views\Setting\Setting.cshtml" />
+    <Content Include="Views\Setting\Edit - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

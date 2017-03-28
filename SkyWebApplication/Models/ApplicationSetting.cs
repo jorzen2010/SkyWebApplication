@@ -13,6 +13,10 @@ namespace SkyWebApplication.Models
         /// 网站名
         /// </summary>
         public string SiteName { get; set; }
+        /// <summary>
+        /// 网站域名
+        /// </summary>
+        public string DomainName { get; set; }
 
         /// <summary>
         /// 图标
@@ -23,11 +27,20 @@ namespace SkyWebApplication.Models
         /// 版权
         /// </summary>
         public string Copyright { get; set; }
-
         /// <summary>
+        /// 统计js
+        /// </summary>
+        public string Statistics { get; set; }
+
+   /// <summary>
         /// 网站协议
         /// </summary>
         public string Protocol { get; set; }
+
+
+
+
+     
 
         /// <summary>
         /// SEO Title
@@ -44,20 +57,64 @@ namespace SkyWebApplication.Models
         /// </summary>
         public string Description { get; set; }
 
-        /// <summary>
-        /// 上传地址
-        /// </summary>
-        public string UploadUrl { get; set; }
+
+
+
 
         /// <summary>
-        /// 前缀
+        /// 文件上传地址
+        /// </summary>
+        public string FileUploadUrl { get; set; }
+        /// <summary>
+        /// 编辑器上传地址
+        /// </summary>
+        public string EditorUploadUrl { get; set; }
+        /// <summary>
+        /// 图片上传地址
+        /// </summary>
+        public string ImgUploadUrl { get; set; }
+        /// <summary>
+        /// 头像上传地址
+        /// </summary>
+        public string AvatarUploadUrl { get; set; }
+        /// <summary>
+        /// 路径前缀
         /// </summary>
         public string BaseUrl { get; set; }
 
+
+
         /// <summary>
-        /// 统计js
+        /// 微信应用ID
         /// </summary>
-        public string Statistics { get; set; }
+        public string WXAppID { get; set; }
+        /// <summary>
+        /// 微信应用密钥
+        /// </summary>
+        public string WXAppSecret { get; set; }
+
+
+        /// <summary>
+        /// 微博应用ID
+        /// </summary>
+        public string WBAppID { get; set; }
+        /// <summary>
+        /// 微博应用密钥
+        /// </summary>
+        public string WBAppSecret { get; set; }
+
+        /// <summary>
+        /// QQ应用ID
+        /// </summary>
+        public string QQAppID { get; set; }
+        /// <summary>
+        /// QQ应用密钥
+        /// </summary>
+        public string QQAppSecret { get; set; }
+
+
+
+
 
         /// <summary>
         /// 账号锁定分钟
@@ -80,7 +137,9 @@ namespace SkyWebApplication.Models
 
         public int CodeMinutes { get; set; }
 
-        public byte[] RowVersion { get; set; }
+
+
+
 
         /// <summary>
         /// 邮件服务器主机
@@ -96,12 +155,6 @@ namespace SkyWebApplication.Models
         /// 发件人
         /// </summary>
         public string EmailFrom { get; set; }
-
-        /// <summary>
-        /// 是否指定用户
-        /// </summary>
-        public bool UseCredential { get; set; }
-
         /// <summary>
         /// 指定用户名
         /// </summary>

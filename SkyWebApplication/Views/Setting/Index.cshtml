@@ -1,0 +1,195 @@
+﻿@model IEnumerable<SkyWebApplication.Models.Setting>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>赵征专用-Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SiteName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Copyright)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Protocol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Statistics)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LockedMinutes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FailedPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodeSeconds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodeMinutes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RowVersion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailHost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailPort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UseCredential)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveMinutes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailCodeTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailCodeContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailLinkTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailLinkContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResetLinkTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResetLinkContent)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiteName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Copyright)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Protocol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Keywords)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Statistics)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LockedMinutes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FailedPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodeSeconds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodeMinutes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RowVersion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailHost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailPort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UseCredential)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActiveMinutes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailCodeTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailCodeContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailLinkTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailLinkContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResetLinkTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResetLinkContent)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

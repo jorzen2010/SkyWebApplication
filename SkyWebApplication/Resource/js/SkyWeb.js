@@ -1,9 +1,22 @@
-﻿//获取地址栏参数
+﻿//获取地址栏参数//只能是英文参数
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
 }
+
+//获取地址栏参数//可以是中文参数
+function getUrlParam(key) {
+    // 获取参数
+    var url = window.location.search;
+    // 正则筛选地址栏
+    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+    // 匹配目标参数
+    var result = url.substr(1).match(reg);
+    //返回参数值
+    return result ? decodeURIComponent(result[2]) : null;
+}
+
 //使用Js用Post或者get提交请求（未测试）http://www.w3school.com.cn/ajax/ajax_xmlhttprequest_send.asp
 function JsPostSubmit() {
     var xmlhttp;
@@ -23,7 +36,7 @@ function JsPostSubmit() {
     xmlhttp.send();
 }
 //使用bootbox的确认删除对话框，此函数依赖<script type="text/javascript" src="/plugins/bootbox.min.js"></script>
-function delconfirm(id, url) {
+function delconfirm(id, url,tourl) {
     bootbox.confirm({
         buttons: {
             confirm: {
@@ -55,7 +68,8 @@ function delconfirm(id, url) {
                     data: { id: id, __RequestVerificationToken: token },
                     success: function (msg) {
                         if (msg.MessageStatus == 'true') {
-                            window.location.reload();
+                            //window.location.reload();
+                            window.location.href = tourl;
                         }
                         else {
                             alertconfirm('删除失败');
