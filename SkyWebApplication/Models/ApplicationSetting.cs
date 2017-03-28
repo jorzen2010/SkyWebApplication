@@ -113,6 +113,20 @@ namespace SkyWebApplication.Models
         public string QQAppSecret { get; set; }
 
 
+        /// <summary>
+        /// 第三方短信接口用户名
+        /// </summary>
+        public string MsgUserName { get; set; }
+        /// <summary>
+        /// 第三方短信接口密码
+        /// </summary>
+        public string MsgPassword { get; set; }
+
+        /// <summary>
+        /// 第三方短信接口
+        /// </summary>
+        public string MsgAPI { get; set; }
+
 
 
 

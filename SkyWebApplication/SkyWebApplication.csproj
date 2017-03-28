@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationSetting.cs" />
+    <Compile Include="Models\Articles.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SysRole.cs" />
@@ -1737,13 +1738,13 @@
     <Content Include="Views\Category\Index - 复制.cshtml" />
     <Content Include="Views\SysUser\List.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
+    <Content Include="Views\Shared\Edit.cshtml" />
     <Content Include="Views\Setting\Create.cshtml" />
     <Content Include="Views\Setting\Delete.cshtml" />
     <Content Include="Views\Setting\Details.cshtml" />
-    <Content Include="Views\Setting\Edit.cshtml" />
+    <Content Include="Views\Setting\Editd.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
-    <Content Include="Views\Setting\Setting.cshtml" />
-    <Content Include="Views\Setting\Edit - 复制.cshtml" />
+    <Content Include="Views\Setting\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

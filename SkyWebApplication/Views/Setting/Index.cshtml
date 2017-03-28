@@ -15,10 +15,16 @@
             @Html.DisplayNameFor(model => model.SiteName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DomainName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Logo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Copyright)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Statistics)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Protocol)
@@ -33,13 +39,46 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UploadUrl)
+            @Html.DisplayNameFor(model => model.FileUploadUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditorUploadUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgUploadUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvatarUploadUrl)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BaseUrl)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Statistics)
+            @Html.DisplayNameFor(model => model.WXAppID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WXAppSecret)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WBAppID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WBAppSecret)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QQAppID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QQAppSecret)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MsgUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MsgPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MsgAPI)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LockedMinutes)
@@ -54,9 +93,6 @@
             @Html.DisplayNameFor(model => model.CodeMinutes)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RowVersion)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.EmailHost)
         </th>
         <th>
@@ -64,9 +100,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EmailFrom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UseCredential)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EmailUser)
@@ -104,10 +137,16 @@
             @Html.DisplayFor(modelItem => item.SiteName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DomainName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Logo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Copyright)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Statistics)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Protocol)
@@ -122,13 +161,46 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UploadUrl)
+            @Html.DisplayFor(modelItem => item.FileUploadUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EditorUploadUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImgUploadUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AvatarUploadUrl)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BaseUrl)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Statistics)
+            @Html.DisplayFor(modelItem => item.WXAppID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WXAppSecret)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WBAppID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WBAppSecret)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QQAppID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QQAppSecret)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MsgUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MsgPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MsgAPI)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LockedMinutes)
@@ -143,9 +215,6 @@
             @Html.DisplayFor(modelItem => item.CodeMinutes)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RowVersion)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.EmailHost)
         </td>
         <td>
@@ -153,9 +222,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EmailFrom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UseCredential)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EmailUser)

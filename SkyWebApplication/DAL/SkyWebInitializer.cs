@@ -52,6 +52,8 @@ namespace SkyWebApplication.DAL
                 Title = "SkyWeb",
                 Keywords = "SkyWeb",
                 Description = "SkyWeb",
+                Copyright = copyright.ToString(),
+                Statistics = string.Empty,
 
                 FileUploadUrl = "~/File/Upload/",
                 ImgUploadUrl = "~/File/Upload/",
@@ -59,12 +61,14 @@ namespace SkyWebApplication.DAL
                 AvatarUploadUrl = "~/File/Upload/",
                 BaseUrl = "~",
 
-                Copyright = copyright.ToString(),
-                Statistics = string.Empty,
+               
+                
                 FailedPassword = 5,
                 CodeSeconds = 60,
                 CodeMinutes = 2,
                 LockedMinutes = 5,
+
+
                 EmailHost = "smtp.126.com",
                 EmailPort = 25,
                 EmailFrom = "ccvixo@126.com",
@@ -77,6 +81,8 @@ namespace SkyWebApplication.DAL
                 EmailLinkContent = "<p>点击链接激活:</p><a href=\"{0}\">链接：{1}</a>",
                 ResetLinkTitle = "重置邮件",
                 ResetLinkContent = "<p>点击链接重置:</p><a href=\"{0}\">链接：{1}</a>",
+
+
             });
 
             context.SaveChanges();
