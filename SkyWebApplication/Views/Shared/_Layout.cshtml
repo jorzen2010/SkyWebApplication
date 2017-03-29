@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> SKY_Web_Application - @ViewBag.Title</title>
+    <title> @ViewBag.Title -SKY_Web_Application </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -36,8 +36,8 @@
         @Html.Partial("_MenuPartial")
         </aside>
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-        @RenderBody()
+        <div class="content-wrapper" id="mainDiv">
+            @RenderBody()
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
@@ -58,8 +58,9 @@
     <script src="/dist/js/app.min.js"></script>
     <!-- SlimScroll 1.3.0 -->
     <script src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-  
-    @RenderSection("FootScripts", required: false)
 
+    @RenderSection("FootScripts", required: false)
+  
+   
 </body>
 </html>

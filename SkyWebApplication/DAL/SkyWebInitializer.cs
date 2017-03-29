@@ -107,30 +107,66 @@ namespace SkyWebApplication.DAL
             };
             sysRoles.ForEach(s => context.SysRoles.Add(s));
             context.SaveChanges();
+            #endregion
 
+
+            #region 字典，分类，部门初始化
             var categorys = new List<Category>
             {
-                new Category{CategoryName="系统字典",CategoryInfo="系统字典",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="顶级分类",CategoryInfo="顶级分类",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
 
                 new Category{CategoryName="文章类型",CategoryInfo="文章类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="学历",CategoryInfo="学历说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="性别",CategoryInfo="性别说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="图片类型",CategoryInfo="图片类型说明",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+
 
                 new Category{CategoryName="通知公告",CategoryInfo="通知公告说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="新闻资讯",CategoryInfo="新闻资讯说明",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
 
-                new Category{CategoryName="博士",CategoryInfo="博士说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="硕士",CategoryInfo="硕士说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="师资图片",CategoryInfo="师资说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="活动图片",CategoryInfo="活动说明",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
 
-
-                new Category{CategoryName="男",CategoryInfo="通知说明",CategoryParentID=4,CategoryStatus=false,CategorySort=0},
-                new Category{CategoryName="女",CategoryInfo="公告说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
-
-                new Category{CategoryName="通知",CategoryInfo="通知说明",CategoryParentID=5,CategoryStatus=false,CategorySort=0},
-                new Category{CategoryName="公告",CategoryInfo="公告说明",CategoryParentID=5,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="通知",CategoryInfo="通知说明",CategoryParentID=4,CategoryStatus=false,CategorySort=0},
+                new Category{CategoryName="公告",CategoryInfo="公告说明",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
 
             };
             categorys.ForEach(s => context.Categorys.Add(s));
+            context.SaveChanges();
+
+            var departments = new List<Department>
+            {
+                new Department{DepartmentName="部门架构",DepartmentInfo="部门架构",DepartmentParentID=0,DepartmentStatus=true,DepartmentSort=0},
+
+                new Department{DepartmentName="公司名称",DepartmentInfo="公司名称",DepartmentParentID=1,DepartmentStatus=true,DepartmentSort=0},
+
+                new Department{DepartmentName="销售部",DepartmentInfo="销售部",DepartmentParentID=2,DepartmentStatus=true,DepartmentSort=0},
+                new Department{DepartmentName="研发部",DepartmentInfo="研发部",DepartmentParentID=2,DepartmentStatus=true,DepartmentSort=0},
+
+                new Department{DepartmentName="基础医疗",DepartmentInfo="基础医疗",DepartmentParentID=3,DepartmentStatus=true,DepartmentSort=0},
+                new Department{DepartmentName="公共卫生",DepartmentInfo="公共卫生",DepartmentParentID=3,DepartmentStatus=true,DepartmentSort=0},
+
+                new Department{DepartmentName="网络研发",DepartmentInfo="网络研发",DepartmentParentID=4,DepartmentStatus=false,DepartmentSort=0},
+                new Department{DepartmentName="药品研发",DepartmentInfo="药品研发",DepartmentParentID=4,DepartmentStatus=true,DepartmentSort=0},
+
+            };
+            departments.ForEach(s => context.Departments.Add(s));
+            context.SaveChanges();
+
+            var dictionarys = new List<Dictionary>
+            {
+                new Dictionary{DictionaryName="系统字典",DictionaryInfo="系统字典",DictionaryParentID=0,DictionaryStatus=true,DictionarySort=0},
+
+                new Dictionary{DictionaryName="学历",DictionaryInfo="学历说明",DictionaryParentID=1,DictionaryStatus=true,DictionarySort=0},
+                new Dictionary{DictionaryName="性别",DictionaryInfo="性别说明",DictionaryParentID=1,DictionaryStatus=true,DictionarySort=0},
+
+                new Dictionary{DictionaryName="博士",DictionaryInfo="博士说明",DictionaryParentID=2,DictionaryStatus=true,DictionarySort=0},
+                new Dictionary{DictionaryName="硕士",DictionaryInfo="硕士说明",DictionaryParentID=2,DictionaryStatus=true,DictionarySort=0},
+
+
+                new Dictionary{DictionaryName="男",DictionaryInfo="通知说明",DictionaryParentID=3,DictionaryStatus=false,DictionarySort=0},
+                new Dictionary{DictionaryName="女",DictionaryInfo="公告说明",DictionaryParentID=3,DictionaryStatus=true,DictionarySort=0},
+
+            };
+            dictionarys.ForEach(s => context.Dictionarys.Add(s));
             context.SaveChanges();
 
             #endregion 初始化配置

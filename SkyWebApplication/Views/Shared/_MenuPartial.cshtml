@@ -32,18 +32,98 @@
         </li>
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-film"></i> <span>系统管理</span>
+                <i class="fa fa-gear"></i> <span>系统管理</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
             <ul class="treeview-menu">
                 <li><a href="@Url.Action("Index", "SysUser")"><i class="fa fa-circle-o"></i> 用户管理</a></li>
-                <li><a href="@Url.Action("Dictionary", "Home")"><i class="fa fa-circle-o"></i> 系统字典</a></li>
-                <li><a href="@Url.Action("Edit", "Setting", new { id=1})"><i class="fa fa-circle-o"></i> 系统设置</a></li>
+                <li><a href="@Url.Action("Index", "Dictionary")"><i class="fa fa-circle-o"></i> 系统字典</a></li>
+                <li><a href="@Url.Action("Index", "Category")"><i class="fa fa-circle-o"></i> 分类设置</a></li>
+                <li><a href="@Url.Action("Index", "Setting")"><i class="fa fa-circle-o"></i> 系统设置</a></li>
+                <li><a href="@Url.Action("Index", "Department")"><i class="fa fa-circle-o"></i> 组织架构</a></li>
 
             </ul>
         </li>
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-share"></i> <span>CMS文章系统管理</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+              
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle-o"></i>文章管理
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@Url.Action("Index", "Article")"><i class="fa fa-circle-o"></i> 文章列表</a></li>
+                        <li><a href="@Url.Action("Create", "Article")"><i class="fa fa-circle-o"></i> 添加文章</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle-o"></i>图片管理
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 图片列表</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 添加图片</a></li>
+                    </ul>
+                </li>
+               
+            </ul>
+        </li>
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-share"></i> <span>CRM客户系统管理</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle-o"></i>客户管理
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 客户列表</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 添加客户</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle-o"></i>产品管理
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 产品列表</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 添加产品</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
+
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-film"></i> <span>系统日志</span>

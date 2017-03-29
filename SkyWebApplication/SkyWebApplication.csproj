@@ -172,8 +172,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\bvnode.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DictionaryController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -193,6 +197,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationSetting.cs" />
     <Compile Include="Models\Articles.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Dictionary.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SysRole.cs" />
@@ -1473,6 +1479,8 @@
     <Content Include="Resource\img\avatar.jpg" />
     <Content Include="Resource\img\loading.gif" />
     <Content Include="Resource\img\picture.jpg" />
+    <Content Include="Resource\js\Department.js" />
+    <Content Include="Resource\js\Category.js" />
     <Content Include="Resource\js\Dictionary.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1704,7 +1712,7 @@
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\Add.cshtml" />
     <Content Include="Views\Home\Charts.cshtml" />
-    <Content Include="Views\Home\Dictionary.cshtml" />
+    <Content Include="Views\Home\Dictionaryold.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
@@ -1730,21 +1738,19 @@
     <Content Include="Views\Home\Fileupload.cshtml" />
     <Content Include="Views\SysUser\Edit.cshtml" />
     <Content Include="Views\SysUser\Search.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
-    <Content Include="Views\Category\Delete.cshtml" />
-    <Content Include="Views\Category\Details.cshtml" />
-    <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\Index - 复制.cshtml" />
     <Content Include="Views\SysUser\List.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
     <Content Include="Views\Shared\Edit.cshtml" />
-    <Content Include="Views\Setting\Create.cshtml" />
-    <Content Include="Views\Setting\Delete.cshtml" />
-    <Content Include="Views\Setting\Details.cshtml" />
-    <Content Include="Views\Setting\Editd.cshtml" />
+    <Content Include="Views\Dictionary\Index.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Article\Create.cshtml" />
+    <Content Include="Views\Article\Created.cshtml" />
+    <Content Include="Views\Article\Delete.cshtml" />
+    <Content Include="Views\Article\Details.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
-    <Content Include="Views\Setting\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

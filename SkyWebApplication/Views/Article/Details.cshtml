@@ -1,0 +1,122 @@
+﻿@model SkyWebApplication.Models.Articles
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>赵征专用-Details</h2>
+
+<div>
+    <h4>Articles</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Keywords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Essence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Essence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Top)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Top)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tags)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

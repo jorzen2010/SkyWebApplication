@@ -15,12 +15,13 @@ namespace SkyWebApplication.Controllers
     {
         private SkyWebContext db = new SkyWebContext();
       
-        public ActionResult Edit(int? id)
+        public ActionResult Index()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            int id = 1;
             Setting setting = db.Settings.Find(id);
             if (setting == null)
             {
@@ -35,15 +36,15 @@ namespace SkyWebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include="Id,SiteName,DomainName,Logo,Copyright,Statistics,Protocol,Title,Keywords,Description,FileUploadUrl,EditorUploadUrl,ImgUploadUrl,AvatarUploadUrl,BaseUrl,WXAppID,WXAppSecret,WBAppID,WBAppSecret,QQAppID,QQAppSecret,MsgUserName,MsgPassword,MsgAPI,LockedMinutes,FailedPassword,CodeSeconds,CodeMinutes,EmailHost,EmailPort,EmailFrom,EmailUser,EmailPassword,ActiveMinutes,EmailCodeTitle,EmailCodeContent,EmailLinkTitle,EmailLinkContent,ResetLinkTitle,ResetLinkContent")] Setting setting)
+        public ActionResult Index([Bind(Include="Id,SiteName,DomainName,Logo,Copyright,Statistics,Protocol,Title,Keywords,Description,FileUploadUrl,EditorUploadUrl,ImgUploadUrl,AvatarUploadUrl,BaseUrl,WXAppID,WXAppSecret,WBAppID,WBAppSecret,QQAppID,QQAppSecret,MsgUserName,MsgPassword,MsgAPI,LockedMinutes,FailedPassword,CodeSeconds,CodeMinutes,EmailHost,EmailPort,EmailFrom,EmailUser,EmailPassword,ActiveMinutes,EmailCodeTitle,EmailCodeContent,EmailLinkTitle,EmailLinkContent,ResetLinkTitle,ResetLinkContent")] Setting setting)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(setting).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit", "Setting", new { id = 1 ,msg="success"});
+                return RedirectToAction("Index", "Setting", new { msg="success"});
             }
-            return RedirectToAction("Edit", "Setting", new { id=1,msg="error"});
+            return RedirectToAction("Index", "Setting", new {msg="error"});
         }
 
         protected override void Dispose(bool disposing)

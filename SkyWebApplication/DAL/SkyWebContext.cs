@@ -26,6 +26,10 @@ namespace SkyWebApplication.DAL
         public DbSet<SysRole> SysRoles { get; set; }
         public DbSet<SysUserRole> SysUserRoles { get; set; }
         public DbSet<Category> Categorys { get; set; }
+        public DbSet<Dictionary> Dictionarys { get; set; }
+        public DbSet<Department> Departments { get; set; }
+
+        public System.Data.Entity.DbSet<SkyWebApplication.Models.Articles> Articles { get; set; }
 
     }
 }

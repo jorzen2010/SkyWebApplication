@@ -14,7 +14,7 @@ namespace SkyWebApplication.Controllers
 {
    
     
-    public class CategoryController : Controller
+    public class DepartmentController : Controller
     {
         private SkyWebContext db = new SkyWebContext();
 
@@ -22,37 +22,36 @@ namespace SkyWebApplication.Controllers
         public ActionResult Index()
         {
             ViewBag.smallTitle = "警告：请谨慎操作分类设置，不当操作可能会造成系统崩溃";
-            ViewData["Category"] = GetCategorySelectList(2);
             return View();
         }
 
 
-        //获取一个Category
-        public JsonResult GetOneCategory(int? id)
+        //获取一个Department
+        public JsonResult GetOneDepartment(int? id)
         {
             if (id == null)
             {
                 return null;
             }
-            Category category = db.Categorys.Find(id);
-            category.CategoryParentName = db.Categorys.Find(category.CategoryParentID).CategoryName;
+            Department department = db.Departments.Find(id);
+            department.DepartmentParentName = db.Departments.Find(department.DepartmentParentID).DepartmentName;
             
-            if (category == null)
+            if (department == null)
             {
                 return null;
             }
-            return Json(category, JsonRequestBehavior.AllowGet);
+            return Json(department, JsonRequestBehavior.AllowGet);
             
         }
-        //构建一个CategoryList的json
+        //构建一个DepartmentList的json
         public JsonResult TreeJson()
         {
 
-            Category root = db.Categorys.Find(1);
+            Department root = db.Departments.Find(1);
             bvnode rootnode = new bvnode();
-            rootnode.text = root.CategoryName;
+            rootnode.text = root.DepartmentName;
             rootnode.id = root.ID;
-            rootnode.pid = root.CategoryParentID;
+            rootnode.pid = root.DepartmentParentID;
             LoopToAppendChildren(rootnode);
             return Json(rootnode.nodes, JsonRequestBehavior.AllowGet);
         }
@@ -75,17 +74,17 @@ namespace SkyWebApplication.Controllers
 
         public List<bvnode> Getnodes(int ParentID)
         {
-            var categorys = from s in db.Categorys
-                            orderby s.CategorySort ascending
-                            where s.CategoryParentID == ParentID
+            var departments = from s in db.Departments
+                            orderby s.DepartmentSort ascending
+                            where s.DepartmentParentID == ParentID
                             select s;
             List<bvnode> nodes = new List<bvnode>();
-            foreach(var category in categorys)
+            foreach(var department in departments)
             { 
                 bvnode node=new bvnode();
-                node.id=category.ID;
-                node.pid=category.CategoryParentID;
-                node.text=category.CategoryName;
+                node.id=department.ID;
+                node.pid=department.DepartmentParentID;
+                node.text=department.DepartmentName;
                 nodes.Add(node);
             
             }
@@ -94,84 +93,50 @@ namespace SkyWebApplication.Controllers
 
         }
 
-        //构建一个CategoryList的SelectListItem
-   
-        public List<SelectListItem> GetCategorySelectList(int id)
-        {
-            List<SelectListItem> items = new List<SelectListItem>();
+      
+     
+     
 
-            Category root = db.Categorys.Find(id);
-            SelectListItem item=new SelectListItem { Text = root.CategoryName, Value = root.ID.ToString() };
-
-
-            LoopToAppendChildrenSelectListItem(items,item);
-            return items;
-        }
-        private string a = "";
-        private int i = 0;
-        //
-        public void LoopToAppendChildrenSelectListItem(List<SelectListItem> items,SelectListItem rootItem)
-        {
-            
-            var subItems = Getnodes(int.Parse(rootItem.Value));
-            if (subItems.Count > 0)
-            {
-                               
-                foreach (var subItem in subItems)
-                {  
-                    a += "--";
-                     SelectListItem Item = new SelectListItem { Text = a + subItem.text, Value = subItem.id.ToString() };
-                 items.Add(Item);
-                    
-                    LoopToAppendChildrenSelectListItem(items, Item);
-                   
-                }
-
-                a = a.Remove(a.LastIndexOf("--"));
-            }
-
-        }
-
-        // GET: /Category/Create
+        // GET: /Department/Create
         //public ActionResult Create()
         //{
         //    return View();
         //}
 
-        // POST: /Category/Create
+        // POST: /Department/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryName,CategoryInfo,CategoryParentID,CategoryStatus,CategorySort")] Category category)
+        public ActionResult Create([Bind(Include = "DepartmentName,DepartmentInfo,DepartmentParentID,DepartmentStatus,DepartmentSort")] Department department)
         {
 
             if (ModelState.IsValid)
             {
-                db.Categorys.Add(category);
+                db.Departments.Add(department);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "Category", new { option = category.CategoryName });
+                return RedirectToAction("Index", "Department", new { option = department.DepartmentName });
             }
-            return RedirectToAction("Index", "Category", new { option = category.CategoryName });
+            return RedirectToAction("Index", "Department", new { option = department.DepartmentName });
         }
 
 
       
-        // POST: /Category/Edit/5
+        // POST: /Department/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,CategoryName,CategoryInfo,CategoryParentID,CategoryStatus,CategorySort")] Category category)
+        public ActionResult Edit([Bind(Include="ID,DepartmentName,DepartmentInfo,DepartmentParentID,DepartmentStatus,DepartmentSort")] Department department)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(department).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Category", new { option = category.CategoryName });
+                return RedirectToAction("Index", "Department", new { option = department.DepartmentName });
             }
-            return RedirectToAction("Index", "Category", new { option = category.CategoryName });
+            return RedirectToAction("Index", "Department", new { option = department.DepartmentName });
         }
 
 
@@ -188,12 +153,12 @@ namespace SkyWebApplication.Controllers
             }
             else
             {
-                var childcategorys = from s in db.Categorys
-                                     orderby s.CategorySort ascending
-                                     where s.CategoryParentID == id
+                var childdepartments = from s in db.Departments
+                                     orderby s.DepartmentSort ascending
+                                     where s.DepartmentParentID == id
                                      select s;
 
-                if (childcategorys.Count() > 0)
+                if (childdepartments.Count() > 0)
                 {
                     msg.MessageStatus = "false";
                     msg.MessageInfo = "此ID节点下有子节点，不能删除";
@@ -209,12 +174,12 @@ namespace SkyWebApplication.Controllers
                     }
                     else
                     {
-                        Category category = db.Categorys.Find(id);
-                        db.Categorys.Remove(category);
+                        Department department = db.Departments.Find(id);
+                        db.Departments.Remove(department);
                         db.SaveChanges();
                         msg.MessageStatus = "true";
                         msg.MessageInfo = "删除成功";
-                    }              
+                    }
                 }
             }
 
