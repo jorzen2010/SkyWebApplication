@@ -15,6 +15,64 @@ namespace SkyWebApplication.Controllers
     {
         private SkyWebContext db = new SkyWebContext();
 
+
+        public List<Category> GetCategoryListByParentID(int ParentID)
+        {
+            var categorys = from s in db.Categorys
+                            orderby s.CategorySort ascending
+                            where s.CategoryParentID == ParentID
+                            select s;
+            List<Category> CategoryList = new List<Category>();
+            foreach (var category in categorys)
+            {
+                CategoryList.Add(category);
+            }
+            return CategoryList.ToList();
+
+        }
+
+        //构建一个CategoryList的SelectListItem
+
+        public List<SelectListItem> GetCategorySelectList(int id)
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+
+            Category root = db.Categorys.Find(id);
+            SelectListItem item = new SelectListItem { Text = root.CategoryName, Value = root.ID.ToString() };
+
+
+            LoopToAppendChildrenSelectListItem(items, item);
+            return items;
+        }
+        private string a = "";
+        //
+        public void LoopToAppendChildrenSelectListItem(List<SelectListItem> items, SelectListItem rootItem)
+        {
+
+
+            var subItems = GetCategoryListByParentID(int.Parse(rootItem.Value));
+
+            if (subItems.Count > 0)
+            {
+
+                foreach (var subItem in subItems)
+                {
+                    if (subItem.CategoryParentID == 2)
+                    {
+                        a = "";
+                    }
+
+                    SelectListItem Item = new SelectListItem { Text = a + subItem.CategoryName, Value = subItem.ID.ToString() };
+                    items.Add(Item);
+                    a += "……";
+                    LoopToAppendChildrenSelectListItem(items, Item);
+
+                }
+
+            }
+
+        }
+
         // GET: /Article/
         public ActionResult Index()
         {
@@ -28,18 +86,23 @@ namespace SkyWebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articles articles = db.Articles.Find(id);
-            if (articles == null)
+            Article article = db.Articles.Find(id);
+            if (article == null)
             {
                 return HttpNotFound();
             }
-            return View(articles);
+            return View(article);
         }
 
         // GET: /Article/Create
         public ActionResult Create()
         {
+
+            
+            ViewData["Categorylist"] = GetCategorySelectList(2);
             return View();
+
+            
         }
 
         // POST: /Article/Create
@@ -48,16 +111,16 @@ namespace SkyWebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include="ID,Title,Category,Content,CodeTitle,Keywords,Description,Hot,Essence,Top,Tags,CreatTime,Password,Comment")] Articles articles)
+        public ActionResult Create([Bind(Include = "ID,Title,Category,Content,Author,CodeTitle,Keywords,Description,Hot,Essence,Top,Tags,CreatTime,LastUpdateTime,Password,Comment")] Article article)
         {
             if (ModelState.IsValid)
             {
-                db.Articles.Add(articles);
+                db.Articles.Add(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           // ViewData["Category"] =CategoryController.GetCategorySelectList
-            return View(articles);
+
+            return View(article);
         }
 
         // GET: /Article/Edit/5
@@ -67,12 +130,13 @@ namespace SkyWebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articles articles = db.Articles.Find(id);
-            if (articles == null)
+            Article article = db.Articles.Find(id);
+            if (article == null)
             {
                 return HttpNotFound();
             }
-            return View(articles);
+            ViewData["Categorylist"] = GetCategorySelectList(2);
+            return View(article);
         }
 
         // POST: /Article/Edit/5
@@ -80,15 +144,16 @@ namespace SkyWebApplication.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Title,Category,Content,CodeTitle,Keywords,Description,Hot,Essence,Top,Tags,CreatTime,Password,Comment")] Articles articles)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "ID,Title,Category,Content,Author,CodeTitle,Keywords,Description,Hot,Essence,Top,Tags,CreatTime,LastUpdateTime,Password,Comment")] Article article)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(articles).State = EntityState.Modified;
+                db.Entry(article).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(articles);
+            return View(article);
         }
 
         // GET: /Article/Delete/5
@@ -98,12 +163,12 @@ namespace SkyWebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articles articles = db.Articles.Find(id);
-            if (articles == null)
+            Article article = db.Articles.Find(id);
+            if (article == null)
             {
                 return HttpNotFound();
             }
-            return View(articles);
+            return View(article);
         }
 
         // POST: /Article/Delete/5
@@ -111,8 +176,8 @@ namespace SkyWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Articles articles = db.Articles.Find(id);
-            db.Articles.Remove(articles);
+            Article article = db.Articles.Find(id);
+            db.Articles.Remove(article);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

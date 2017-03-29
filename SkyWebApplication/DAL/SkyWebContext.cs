@@ -28,8 +28,8 @@ namespace SkyWebApplication.DAL
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Dictionary> Dictionarys { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
-        public System.Data.Entity.DbSet<SkyWebApplication.Models.Articles> Articles { get; set; }
 
     }
 }

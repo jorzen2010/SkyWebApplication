@@ -175,6 +175,7 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\bvnode.cs" />
+    <Compile Include="Controllers\CommonServices.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DictionaryController.cs" />
@@ -196,7 +197,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationSetting.cs" />
-    <Compile Include="Models\Articles.cs" />
+    <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Dictionary.cs" />
     <Compile Include="Models\Category.cs" />
@@ -1744,19 +1745,18 @@
     <Content Include="Views\Shared\Edit.cshtml" />
     <Content Include="Views\Dictionary\Index.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
     <Content Include="Views\Article\Create.cshtml" />
-    <Content Include="Views\Article\Created.cshtml" />
+    <Content Include="Views\Article\Createold.cshtml" />
     <Content Include="Views\Article\Delete.cshtml" />
     <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
-    <Content Include="Views\Setting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="plugins\flashavatar\upload\" />
     <Folder Include="Resource\Upload\" />
-    <Folder Include="Views\eee\" />
     <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>

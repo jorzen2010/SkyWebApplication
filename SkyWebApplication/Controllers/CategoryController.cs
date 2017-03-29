@@ -22,7 +22,7 @@ namespace SkyWebApplication.Controllers
         public ActionResult Index()
         {
             ViewBag.smallTitle = "警告：请谨慎操作分类设置，不当操作可能会造成系统崩溃";
-            ViewData["Category"] = GetCategorySelectList(2);
+            
             return View();
         }
 
@@ -94,43 +94,7 @@ namespace SkyWebApplication.Controllers
 
         }
 
-        //构建一个CategoryList的SelectListItem
-   
-        public List<SelectListItem> GetCategorySelectList(int id)
-        {
-            List<SelectListItem> items = new List<SelectListItem>();
-
-            Category root = db.Categorys.Find(id);
-            SelectListItem item=new SelectListItem { Text = root.CategoryName, Value = root.ID.ToString() };
-
-
-            LoopToAppendChildrenSelectListItem(items,item);
-            return items;
-        }
-        private string a = "";
-        private int i = 0;
-        //
-        public void LoopToAppendChildrenSelectListItem(List<SelectListItem> items,SelectListItem rootItem)
-        {
-            
-            var subItems = Getnodes(int.Parse(rootItem.Value));
-            if (subItems.Count > 0)
-            {
-                               
-                foreach (var subItem in subItems)
-                {  
-                    a += "--";
-                     SelectListItem Item = new SelectListItem { Text = a + subItem.text, Value = subItem.id.ToString() };
-                 items.Add(Item);
-                    
-                    LoopToAppendChildrenSelectListItem(items, Item);
-                   
-                }
-
-                a = a.Remove(a.LastIndexOf("--"));
-            }
-
-        }
+       
 
         // GET: /Category/Create
         //public ActionResult Create()

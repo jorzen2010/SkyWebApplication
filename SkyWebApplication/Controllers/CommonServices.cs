@@ -5,11 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using SkyWebApplication.Models;
 using SkyWebApplication.DAL;
-
 namespace SkyWebApplication.Controllers
 {
-    public class BaseController : Controller
+    public class CommonServices
     {
+        private SkyWebContext db = new SkyWebContext();
+        private string a = "";
+        //
+        // GET: /Base/
+
+
        
-	}
+        
+    }
 }
