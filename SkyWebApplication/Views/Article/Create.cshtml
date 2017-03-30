@@ -30,14 +30,14 @@
                 <!-- /.box-header -->
                 <!-- form start -->
 
-               @using (Html.BeginForm("Create", "Article", FormMethod.Post, new { @class = "form-horizontal" }))
+               @using (Html.BeginForm("Create", "Article", FormMethod.Post, new { @class = "form-horizontal", @name = "ArticleForm", @id = "ArticleForm" }))
                 {  <div class="box-body">
                         @Html.AntiForgeryToken()
 
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#tab_1" data-toggle="tab">发表文章</a></li>
-                                <li><a href="#tab_2" data-toggle="tab">搜索优化</a></li>
+                                <li><a href="#tab_2" data-toggle="tab">搜索引擎优化</a></li>
                               
                             </ul>
                             <div class="tab-content">
@@ -47,8 +47,6 @@
                                             <label for="inputEmail3" class="col-sm-2 control-label">文章栏目</label>
                                             <div class="col-sm-8  input-group">
                                                 @Html.DropDownListFor(model => model.Category, ViewData["CategoryList"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
-
-
                                             </div>
                                         </div>
 
@@ -63,7 +61,7 @@
                                         <div class="form-group">
                                             <label for="inputPassword3" class="col-sm-2 control-label">编辑器</label>
                                             <div class="col-sm-8  input-group">
-                                                <textarea id="editor" name="Content" style="height:500px;"></textarea>
+                                                <textarea id="Content" name="Content" style="height:500px;"></textarea>
 
                                             </div>
                                         </div>
@@ -85,7 +83,7 @@
                                             <div class="col-sm-8  input-group" style="padding-top:7px;">
                                                 热门 @Html.CheckBoxFor(model => model.Hot)
                                                 加精 @Html.CheckBoxFor(model => model.Essence)
-                                                置顶 @Html.CheckBoxFor(model => model.Top)
+                                                置顶 @Html.CheckBoxFor(model => model.IfTop)
                                                 允许评论 @Html.CheckBoxFor(model => model.Comment)
                                                 @Html.HiddenFor(model => model.CreatTime, new { @class = "form-control", @Value = System.DateTime.Now.ToString() })
                                                 @Html.HiddenFor(model => model.LastUpdateTime, new { @class = "form-control", @Value = System.DateTime.Now.ToString() })
@@ -139,7 +137,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="submit" class="btn btn-default">取消</button>
-                        <button type="submit" class="btn btn-info pull-right">确定</button>
+                        <button type="submit" class="btn btn-primary pull-right">确定发表</button>
                     </div>
                     <!-- /.box-footer -->
                }
@@ -160,36 +158,6 @@
     <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
     <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-
-            $('[type="radio"],[type="checkbox"]').iCheck({
-                labelHover: false,
-                cursor: true,
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-                increaseArea: '20%',
-            });
-
-
-            $('[type="file"]').fileinput({
-                'allowedFileExtensions': ['jpg', 'png', 'gif'],
-                uploadUrl: '/File/Upload', // you must set a valid URL here else you will get an error
-                allowedFileExtensions: ['jpg', 'png', 'gif'],
-                overwriteInitial: false,
-                maxFileSize: 1000,
-                maxFilesNum: 10,
-                slugCallback: function (filename) {
-                    return filename.replace('(', '_').replace(']', '_');
-                }
-            });
-
-
-            var ue = UE.getEditor('editor');
-
-
-        });
-
-    </script>
+    <script type="text/javascript" src="~/Resource/js/Article.js"></script>
+    
 }

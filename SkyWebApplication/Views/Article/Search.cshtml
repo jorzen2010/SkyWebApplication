@@ -55,7 +55,7 @@
                                 <th class="col-md-1">
                                     序号
                                 </th>
-                                <th class="col-md-4">
+                                <th class="col-md-2">
                                     标题
                                 </th>
                                 <th class="col-md-1">
@@ -71,7 +71,7 @@
                                 <th class="col-sm-1">
                                     是否允许评论
                                 </th>
-                                <th class="col-sm-2">操作</th>
+                                <th class="col-sm-4">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -116,7 +116,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <ul class="pull-right">
-                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Search", new { page = page, keywords = Request["keywords"] }),
     new PagedListRenderOptions
     {
         LinkToPreviousPageFormat = "上一页",

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SkyWebApplication.Models
 {
@@ -20,7 +21,7 @@ namespace SkyWebApplication.Models
 
         public bool Hot { get; set; }
         public bool Essence { get; set; }
-        public bool Top { get; set; }
+        public bool IfTop { get; set; }
         public string Tags { get; set; }
 
         
@@ -28,6 +29,8 @@ namespace SkyWebApplication.Models
         public DateTime LastUpdateTime { get; set; }
         public string Password { get; set; }
         public bool Comment { get; set; }
+        [NotMapped]
+        public string  CategoryName { get; set; }
 
     }
 }

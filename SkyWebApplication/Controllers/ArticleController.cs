@@ -8,10 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using SkyWebApplication.Models;
 using SkyWebApplication.DAL;
+using Common;
+using PagedList;
 
 namespace SkyWebApplication.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleController : BaseController
     {
         private SkyWebContext db = new SkyWebContext();
 
@@ -39,8 +41,8 @@ namespace SkyWebApplication.Controllers
 
             Category root = db.Categorys.Find(id);
             SelectListItem item = new SelectListItem { Text = root.CategoryName, Value = root.ID.ToString() };
-
-
+            SelectListItem itemDefault = new SelectListItem { Text = "请选择文章类别", Value = "" };
+            items.Add(itemDefault);
             LoopToAppendChildrenSelectListItem(items, item);
             return items;
         }
@@ -74,9 +76,34 @@ namespace SkyWebApplication.Controllers
         }
 
         // GET: /Article/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Articles.ToList());
+            Pager pager = new Pager();
+            pager.table = "Article";
+            pager.strwhere = "1=1";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "ID";
+            pager.FiledOrder = "ID desc";
+            pager = CommonDal.GetPager(pager);
+            IList<Article> articles = DataConvertHelper<Article>.ConvertToModel(pager.EntityDataTable);
+            var sysUsersAsIPageList = new StaticPagedList<Article>(articles, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(sysUsersAsIPageList);
+        }
+
+        public ActionResult Search(int? page,string keywords)
+        {
+            Pager pager = new Pager();
+            pager.table = "Article";
+            pager.strwhere = "Title like '%" + keywords + "%'";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "ID";
+            pager.FiledOrder = "ID desc";
+            pager = CommonDal.GetPager(pager);
+            IList<Article> articles = DataConvertHelper<Article>.ConvertToModel(pager.EntityDataTable);
+            var sysUsersAsIPageList = new StaticPagedList<Article>(articles, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(sysUsersAsIPageList);
         }
 
         // GET: /Article/Details/5
@@ -111,7 +138,7 @@ namespace SkyWebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "ID,Title,Category,Content,Author,CodeTitle,Keywords,Description,Hot,Essence,Top,Tags,CreatTime,LastUpdateTime,Password,Comment")] Article article)
+        public ActionResult Create([Bind(Include = "ID,Title,Category,Content,Author,CodeTitle,Keywords,Description,Hot,Essence,IfTop,Tags,CreatTime,LastUpdateTime,Password,Comment")] Article article)
         {
             if (ModelState.IsValid)
             {
@@ -120,7 +147,7 @@ namespace SkyWebApplication.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(article);
+            return View();
         }
 
         // GET: /Article/Edit/5
@@ -145,7 +172,7 @@ namespace SkyWebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "ID,Title,Category,Content,Author,CodeTitle,Keywords,Description,Hot,Essence,Top,Tags,CreatTime,LastUpdateTime,Password,Comment")] Article article)
+        public ActionResult Edit([Bind(Include = "ID,Title,Category,Content,Author,CodeTitle,Keywords,Description,Hot,Essence,IfTop,Tags,CreatTime,LastUpdateTime,Password,Comment")] Article article)
         {
             if (ModelState.IsValid)
             {
@@ -172,14 +199,36 @@ namespace SkyWebApplication.Controllers
         }
 
         // POST: /Article/Delete/5
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Article article = db.Articles.Find(id);
+        //    db.Articles.Remove(article);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int? id)
         {
-            Article article = db.Articles.Find(id);
-            db.Articles.Remove(article);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Message msg = new Message();
+            if (id == null)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "找不到ID";
+            }
+            else
+            {
+                Article article = db.Articles.Find(id);
+                db.Articles.Remove(article);
+                db.SaveChanges();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "删除成功";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

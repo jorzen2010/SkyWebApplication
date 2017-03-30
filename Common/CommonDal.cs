@@ -77,7 +77,7 @@ namespace Common
         public static string SetFiledOneByOne(string table, string strwhere, string columnname, string columnvalue)
         {
 
-            string msg = "更新字段成功";
+            string msg = "";
 
             SqlParameter[] arParames = new SqlParameter[4];
             arParames[0] = new SqlParameter("@table ", SqlDbType.VarChar, 200);
@@ -96,10 +96,11 @@ namespace Common
             {
                 myconn = new SqlConnection(CommonDal.ConnectionString);
                 SqlDataReader dr = SqlHelper.ExecuteReader(myconn, CommandType.StoredProcedure, "setFiledOneByOne", arParames);
+                msg = "修改成功";
             }
             catch (SqlException ex)
             {
-                msg = "Connection error Or  Update One Field error:：" + ex.Message;
+                msg = "false";
                 throw ex;
             }
             finally

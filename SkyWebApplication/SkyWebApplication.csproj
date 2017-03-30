@@ -175,7 +175,6 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\bvnode.cs" />
-    <Compile Include="Controllers\CommonServices.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DictionaryController.cs" />
@@ -1480,6 +1479,7 @@
     <Content Include="Resource\img\avatar.jpg" />
     <Content Include="Resource\img\loading.gif" />
     <Content Include="Resource\img\picture.jpg" />
+    <Content Include="Resource\js\Article.js" />
     <Content Include="Resource\js\Department.js" />
     <Content Include="Resource\js\Category.js" />
     <Content Include="Resource\js\Dictionary.js" />
@@ -1752,6 +1752,7 @@
     <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Article\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

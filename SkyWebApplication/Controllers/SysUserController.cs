@@ -34,12 +34,12 @@ namespace SkyWebApplication.Controllers
             return View(sysUsersAsIPageList);
         }
 
-        public ActionResult Search(int? page,string username)
+        public ActionResult Search(int? page, string kewords)
         {
             
             Pager pager = new Pager();
             pager.table = "SysUser";
-            pager.strwhere = "UserName='" + username + "'";
+            pager.strwhere = "UserName like'%" + kewords + "%'";
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "ID";

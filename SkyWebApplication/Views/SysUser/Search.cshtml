@@ -39,7 +39,7 @@
                     <div class="pull-right">
                         <form method="get" action="/SysUser/Search">
                             <div class="input-group input-group-sm col-md-2" style="width:200px;">
-                                <input type="text" name="username" class="form-control pull-right" placeholder="输入用户名查找">
+                                <input type="text" name="kewords" class="form-control pull-right" placeholder="输入用户名查找">
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
                                 </div>
@@ -106,7 +106,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <ul class="pull-right">
-                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Search", new { page = page,username=Request["username"] }),
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Search", new { page = page, kewords = Request["kewords"] }),
     new PagedListRenderOptions
     {
         LinkToPreviousPageFormat = "上一页",
