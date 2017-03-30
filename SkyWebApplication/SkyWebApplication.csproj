@@ -241,6 +241,11 @@
     <Content Include="plugins\bootstrap-fileinput\js\fileinput_locale_ru.js" />
     <Content Include="plugins\bootstrap-fileinput\js\fileinput_locale_uk.js" />
     <Content Include="plugins\bootstrap-fileinput\js\fileinput_locale_zh.js" />
+    <Content Include="plugins\bootstrap-tagsinput\css\app.css" />
+    <Content Include="plugins\bootstrap-tagsinput\css\bootstrap-tagsinput.css" />
+    <Content Include="plugins\bootstrap-tagsinput\js\app.js" />
+    <Content Include="plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.js" />
+    <Content Include="plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js" />
     <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.css" />
     <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
