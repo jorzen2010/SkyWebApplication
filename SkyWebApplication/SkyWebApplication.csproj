@@ -170,6 +170,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Attributes\CustomAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
@@ -181,16 +182,15 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImgFileController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysRoleController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\Message.cs" />
     <Compile Include="DAL\SkyWebContext.cs" />
     <Compile Include="DAL\SkyWebDataService.cs" />
     <Compile Include="DAL\SkyWebInitializer.cs" />
-    <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,6 +201,8 @@
     <Compile Include="Models\Dictionary.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImgandFile.cs" />
+    <Compile Include="Models\SkyAuthorize.cs" />
     <Compile Include="Models\SysRole.cs" />
     <Compile Include="Models\SysUser.cs" />
     <Compile Include="Models\SysUserRole.cs" />
@@ -1688,6 +1690,8 @@
     <Content Include="validatejs\language\vi_VN.js" />
     <Content Include="validatejs\language\zh_CN.js" />
     <Content Include="validatejs\language\zh_TW.js" />
+    <Content Include="Views\Account\About.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1702,15 +1706,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout - 复制.cshtml" />
     <Content Include="Views\Shared\_TopPartial.cshtml" />
@@ -1758,6 +1753,12 @@
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Article\Search.cshtml" />
+    <Content Include="Views\ImgFile\Create.cshtml" />
+    <Content Include="Views\ImgFile\Delete.cshtml" />
+    <Content Include="Views\ImgFile\Details.cshtml" />
+    <Content Include="Views\ImgFile\Edit.cshtml" />
+    <Content Include="Views\ImgFile\Index.cshtml" />
+    <Content Include="Views\ImgFile\Index - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

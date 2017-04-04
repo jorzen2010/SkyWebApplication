@@ -1,5 +1,5 @@
-//@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
-/*!
+/*下面这句引入了谷歌的字体，因为网络加载缓慢，建议删除，此css中又同时加载了很多字体。如果需要放在第一行即可
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
  *   AdminLTE v2.3.8
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <http://almsaeedstudio.com>

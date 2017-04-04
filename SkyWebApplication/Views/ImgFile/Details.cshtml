@@ -1,0 +1,58 @@
+﻿@model SkyWebApplication.Models.ImgandFile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>赵征专用-Details</h2>
+
+<div>
+    <h4>ImgandFile</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FileCategroy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileCategroy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HrefUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HrefUrl)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

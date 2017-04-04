@@ -20,7 +20,7 @@
             cancelTitle: '取消上传',
             uploadLabel: '上传',
             uploadTitle: '上传选中文件',
-            msgSizeTooLarge: 'File "{name}" (<b>{size} KB</b>) exceeds maximum allowed upload size of <b>{maxSize} KB</b>. Please retry your upload!',
+            msgSizeTooLarge: '文件 "{name}" (<b>{size} KB</b>) 超过了默认上传上限尺寸 <b>{maxSize} KB</b>. 请联系管理员!',
             msgFilesTooLess: '文件数量必须大于 <b>{n}</b> {files} ，请重新上传！',
             msgFilesTooMany: 'Number of files selected for upload <b>({n})</b> exceeds maximum allowed limit of <b>{m}</b>. Please retry your upload!',
             msgFileNotFound: '文件 "{name}" 未找到!',

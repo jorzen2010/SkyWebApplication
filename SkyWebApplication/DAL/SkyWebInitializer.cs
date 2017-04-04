@@ -100,6 +100,8 @@ namespace SkyWebApplication.DAL
             sysUsers.ForEach(s => context.SysUsers.Add(s));
             context.SaveChanges();
 
+
+
             var sysRoles = new List<SysRole>
             {
                 new SysRole{RoleName="超级管理员",RoleDesc="超级管理员"},
@@ -107,6 +109,29 @@ namespace SkyWebApplication.DAL
             };
             sysRoles.ForEach(s => context.SysRoles.Add(s));
             context.SaveChanges();
+
+            var SysUserRoles = new List<SysUserRole>
+            {
+                new SysUserRole{SysUserID=1,SysRoleID=1},
+                new SysUserRole{SysUserID=1,SysRoleID=2},
+                new SysUserRole{SysUserID=2,SysRoleID=1},
+                new SysUserRole{SysUserID=3,SysRoleID=2}
+
+            };
+            SysUserRoles.ForEach(s => context.SysUserRoles.Add(s));
+            context.SaveChanges();
+
+            var SkyAuthorizes = new List<SkyAuthorize>
+            {
+                new SkyAuthorize{SkyControllerName="Home",SkyActionName="Index",SkyLinkTitle="首页",SkyRolesID="超级管理员,管理员"},
+                new SkyAuthorize{SkyControllerName="Home",SkyActionName="About",SkyLinkTitle="关于我们",SkyRolesID="管理员"},
+  
+
+            };
+            SkyAuthorizes.ForEach(s => context.SkyAuthorizes.Add(s));
+            context.SaveChanges();
+
+
             #endregion
 
 

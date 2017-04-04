@@ -29,6 +29,10 @@ namespace SkyWebApplication.DAL
         public DbSet<Dictionary> Dictionarys { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Article> Articles { get; set; }
+        
+        public DbSet<SkyAuthorize> SkyAuthorizes { get; set; }
+
+        public System.Data.Entity.DbSet<SkyWebApplication.Models.ImgandFile> ImgandFiles { get; set; }
 
 
     }

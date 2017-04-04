@@ -10,14 +10,15 @@ namespace SkyWebApplication.Controllers
     public class AjaxController : Controller
     {
         private SkyWebContext db = new SkyWebContext();
-        private UnitOfWork unitOfWork = new UnitOfWork();
+     
         public JsonResult updateBySql(string sql)
         {
             //string sql = "update sysUser set Status=";
             Message msg = new Message();
             try
             {
-                unitOfWork.SysUserRepository.UpdateWithRawSql(sql);
+                // 重写更新语句
+               // unitOfWork.SysUserRepository.UpdateWithRawSql(sql);
                 msg.MessageStatus = "true";
                 msg.MessageInfo = "更新成功";
             }

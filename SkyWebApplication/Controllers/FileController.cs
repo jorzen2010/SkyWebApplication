@@ -45,6 +45,26 @@ namespace SkyWebApplication.Controllers
             }
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult DeleteFile(string filepath)
+        {
+            Message msg = new Message();
+           
+                try
+                {
+                    FileTools.DeleteFile(filepath);
+                    msg.MessageStatus = "true";
+                    msg.MessageInfo = "删除成功";
+
+                }
+                catch (Exception ex)
+                {
+                    msg.MessageStatus = "false";
+                    msg.MessageInfo = "删除失败" + ex.Message;
+                }
+           
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
      
 
 	}

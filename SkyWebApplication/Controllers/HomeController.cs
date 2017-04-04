@@ -5,14 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using SkyWebApplication.Models;
 using SkyWebApplication.DAL;
+using SkyWebApplication.Attributes;
 using Common;
+using Microsoft.Owin.Security;
 
 namespace SkyWebApplication.Controllers
 {
+    
     public class HomeController : Controller
     {
         private SkyWebContext db = new SkyWebContext();
         private List<Node> categorysNode = new List<Node>();
+        
         public ActionResult Index()
         {
             return View();

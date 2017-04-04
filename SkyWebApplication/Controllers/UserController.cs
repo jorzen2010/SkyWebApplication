@@ -16,7 +16,7 @@ namespace SkyWebApplication.Controllers
     public class UserController : Controller
     {
         private SkyWebContext db = new SkyWebContext();
-        private UnitOfWork unitOfWork = new UnitOfWork();
+       
         
 
         // GET: /不带分页
