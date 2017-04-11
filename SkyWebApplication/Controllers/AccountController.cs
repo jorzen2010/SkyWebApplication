@@ -62,6 +62,8 @@ namespace SkyWebApplication.Controllers
                            orderby s.ID ascending
                            where (s.UserName == username && (s.Password == password))
                            select s;
+
+
             if (sysUsers.Count()>0)
             {
                 HttpCookie cookie = new HttpCookie("uname");
